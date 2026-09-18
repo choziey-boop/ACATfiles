@@ -43,7 +43,7 @@
 
     <!-- 猫咪动态:白色圆角卡片(设计稿 2:147) -->
     <view class="feed-card">
-      <view class="feed-title"><text class="feed-title-text">猫咪动态</text></view>
+      <view class="feed-title"><text class="feed-title-text">喵动态</text></view>
 
       <view wx:if="{{loading}}" class="text-muted center">加载中...</view>
       <empty wx:elif="{{activities.length === 0}}" text="还没有动态,敬请期待" />

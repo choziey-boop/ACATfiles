@@ -34,14 +34,5 @@
       </view>
       <text class="menu-arrow">›</text>
     </view>
-
-    <view class="menu card" bindtap="onAssignCodes" wx:if="{{needAssignCodes}}">
-      <view class="menu-icon">🔢</view>
-      <view class="menu-info">
-        <view class="menu-title">批量生成猫咪编号</view>
-        <view class="menu-sub text-muted">给没有编号的猫咪补上编号（一次性）</view>
-      </view>
-      <text class="menu-arrow">›</text>
-    </view>
   </block>
 </view>

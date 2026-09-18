@@ -1,9 +1,0 @@
-{
-  "name": "assignCatCodes",
-  "version": "1.0.0",
-  "description": "一次性脚本:给没有编号的猫咪补上编号",
-  "main": "index.js",
-  "dependencies": {
-    "wx-server-sdk": "~2.6.3"
-  }
-}
