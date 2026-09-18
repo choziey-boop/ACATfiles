@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "猫咪管理",
+  "usingComponents": {
+    "empty": "/components/empty/index"
+  }
+}

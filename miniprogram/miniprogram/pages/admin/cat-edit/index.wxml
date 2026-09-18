@@ -1,0 +1,127 @@
+<view class="page">
+  <!-- 名字 -->
+  <view class="item">
+    <view class="item-label"><text class="req">*</text>名字</view>
+    <input class="item-input" placeholder="如:大橘" placeholder-class="ph" value="{{form.name}}" data-field="name" bindinput="onInput" />
+  </view>
+
+  <!-- 性别 -->
+  <view class="item">
+    <view class="item-label"><text class="req">*</text>性别</view>
+    <view class="radio-group">
+      <view class="radio-item" wx:for="{{genderTexts}}" wx:key="*this" data-index="{{index}}" bindtap="onGenderTap">
+        <view class="radio-dot {{genderIndex === index ? 'radio-on' : ''}}"></view>
+        <text class="radio-text">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 头像 -->
+  <view class="item item-row" bindtap="onChooseAvatar">
+    <view class="item-label"><text class="req">*</text>头像</view>
+    <view class="row-right">
+      <image wx:if="{{avatar}}" class="avatar-img" src="{{avatar}}" mode="aspectFill" />
+      <view wx:else class="avatar-placeholder">+</view>
+    </view>
+  </view>
+
+  <!-- 生日(选完自动推断年龄) -->
+  <picker mode="date" value="{{birthday}}" end="{{todayStr}}" bindchange="onBirthdayChange">
+    <view class="item item-row">
+      <view class="item-label">生日</view>
+      <view class="row-right">
+        <text class="row-value {{birthday ? '' : 'row-ph'}}">{{birthday ? birthday + (birthdayAge ? ' · ' + birthdayAge : '') : '选择日期'}}</text>
+        <text class="chevron">›</text>
+      </view>
+    </view>
+  </picker>
+
+  <!-- 是否绝育 -->
+  <view class="item item-row">
+    <view class="item-label"><text class="req">*</text>是否绝育</view>
+    <view class="row-right">
+      <text class="row-value">{{isNeutered ? '是' : '否'}}</text>
+      <switch checked="{{isNeutered}}" color="#f2963d" bindchange="onNeuteredChange" />
+    </view>
+  </view>
+  <picker wx:if="{{isNeutered}}" mode="date" value="{{form.neutered_date}}" end="{{todayStr}}" bindchange="onNeuteredDateChange">
+    <view class="item item-row item-sub">
+      <view class="item-label">绝育时间</view>
+      <view class="row-right">
+        <text class="row-value {{form.neutered_date ? '' : 'row-ph'}}">{{form.neutered_date || '选择日期'}}</text>
+        <text class="chevron">›</text>
+      </view>
+    </view>
+  </picker>
+
+  <!-- 状态 -->
+  <picker range="{{statusTexts}}" value="{{statusIndex}}" bindchange="onStatusChange">
+    <view class="item item-row">
+      <view class="item-label"><text class="req">*</text>状态</view>
+      <view class="row-right">
+        <text class="row-value">{{statusTexts[statusIndex]}}</text>
+        <text class="chevron">›</text>
+      </view>
+    </view>
+  </picker>
+
+  <!-- 校区/区域 -->
+  <view class="item">
+    <view class="item-label">校区/区域</view>
+    <input class="item-input" placeholder="如:东校区" placeholder-class="ph" value="{{form.campus_area}}" data-field="campus_area" bindinput="onInput" />
+  </view>
+
+  <!-- 标签 -->
+  <view class="item">
+    <view class="item-label">标签(逗号分隔 用于搜索)</view>
+    <input class="item-input" placeholder="如:橘猫,短毛,亲人" placeholder-class="ph" value="{{form.tags}}" data-field="tags" bindinput="onInput" />
+  </view>
+
+  <!-- 简介描述 -->
+  <view class="item">
+    <view class="item-label">简介描述</view>
+    <textarea class="item-textarea" placeholder="如:性格、故事、常出没地点、外号等" placeholder-class="ph" value="{{form.description}}" data-field="description" bindinput="onInput" maxlength="1000" />
+  </view>
+
+  <!-- 相册图片:默认第一张为封面图,最多 9 张 -->
+  <view class="item">
+    <view class="item-label"><text class="req">*</text>相册图片<text class="label-tip">默认第一张为封面图,最多 9 张</text></view>
+    <view class="photo-grid">
+      <view class="photo-box" wx:for="{{photos}}" wx:key="*this" data-index="{{index}}" bindtap="onPhotoTap">
+        <image class="photo-img" src="{{item}}" mode="aspectFill" />
+        <view wx:if="{{index === 0}}" class="photo-cover">封面</view>
+        <view class="photo-del" catchtap="onPhotoDel" data-index="{{index}}">×</view>
+      </view>
+      <view class="photo-add" wx:if="{{photos.length < 9}}" bindtap="onAddPhotos">+ 添加图片</view>
+    </view>
+  </view>
+
+  <!-- 管理设置(设计稿外保留字段) -->
+  <view class="admin-title">管理设置</view>
+  <view class="item item-row">
+    <view class="item-label">编号</view>
+    <view class="row-right">
+      <text wx:if="{{id && form.code}}" class="row-value code-text">{{form.code}}</text>
+      <text wx:elif="{{id}}" class="row-value row-ph">暂无编号</text>
+      <text wx:else class="row-value row-ph">保存后自动生成</text>
+    </view>
+  </view>
+  <view class="item item-row">
+    <view class="item-label">排序权重</view>
+    <input class="item-input input-right" type="number" placeholder="越大越靠前" placeholder-class="ph" value="{{form.sort_weight}}" data-field="sort_weight" bindinput="onInput" />
+  </view>
+  <view class="item item-row">
+    <view class="item-label">急寻领养</view>
+    <view class="row-right">
+      <switch checked="{{urgent}}" color="#e8604c" bindchange="onUrgentChange" />
+    </view>
+  </view>
+
+  <!-- 保存 -->
+  <view class="save-wrap">
+    <view class="save-btn {{saving || uploading ? 'save-off' : ''}}" bindtap="onSave">{{saving ? '保存中...' : (id ? '保存' : '确认添加')}}</view>
+  </view>
+
+  <!-- 隐藏 canvas(Canvas 2D):头像缩放用。须保持在屏幕内(iOS 离屏不渲染),用透明度隐藏 -->
+  <canvas type="2d" id="coverCropCanvas" class="hidden-canvas" />
+</view>

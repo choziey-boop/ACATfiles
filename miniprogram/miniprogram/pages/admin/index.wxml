@@ -1,0 +1,47 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="center text-muted">校验权限中...</view>
+
+  <view wx:elif="{{!authorized}}" class="center">
+    <view class="deny-icon">🔒</view>
+    <view class="deny-text">无权限访问</view>
+    <view class="text-muted deny-sub">仅管理员可进入后台</view>
+  </view>
+
+  <block wx:else>
+    <view class="menu card" bindtap="onGoCats">
+      <view class="menu-icon">🐱</view>
+      <view class="menu-info">
+        <view class="menu-title">猫咪管理</view>
+        <view class="menu-sub text-muted">新增、编辑、删除猫咪档案,上传图片</view>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+
+    <view class="menu card" bindtap="onGoBanners">
+      <view class="menu-icon">🖼️</view>
+      <view class="menu-info">
+        <view class="menu-title">首页轮播图管理</view>
+        <view class="menu-sub text-muted">新增、编辑、删除首页轮播图(最多 5 张)</view>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+
+    <view class="menu card" bindtap="onGoReview">
+      <view class="menu-icon">📋</view>
+      <view class="menu-info">
+        <view class="menu-title">领养审核</view>
+        <view class="menu-sub text-muted">审核领养申请(P1 开放)</view>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+
+    <view class="menu card" bindtap="onAssignCodes" wx:if="{{needAssignCodes}}">
+      <view class="menu-icon">🔢</view>
+      <view class="menu-info">
+        <view class="menu-title">批量生成猫咪编号</view>
+        <view class="menu-sub text-muted">给没有编号的猫咪补上编号（一次性）</view>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,320 @@
+.loading-wrap {
+  padding: 200rpx 0;
+  text-align: center;
+}
+
+/* 返回按钮:透明,叠在头图左上(黑色箭头,设计稿同款) */
+.nav-back {
+  position: fixed;
+  left: 20rpx;
+  width: 62rpx;
+  height: 62rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.nav-back-icon {
+  width: 46rpx;
+  height: 46rpx;
+}
+
+/* 头图:390x449(864rpx),下缘被内容卡压住 */
+.main-swiper {
+  width: 750rpx;
+  height: 864rpx;
+  background: #f1f1f1;
+}
+
+.main-image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 内容卡:白卡圆角 25px(48rpx),负 margin 上压头图 59px(114rpx) */
+.card {
+  position: relative;
+  z-index: 1;
+  margin-top: -114rpx;
+  background: #ffffff;
+  border-radius: 48rpx 48rpx 0 0;
+  padding: 58rpx 38rpx 240rpx;
+}
+
+/* 名字行 + 浏览/点赞 */
+.head-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 19rpx;
+}
+
+.head-name {
+  display: flex;
+  align-items: center;
+  gap: 15rpx;
+}
+
+.cat-name {
+  font-size: 46rpx;
+  font-weight: 700;
+  color: #000000;
+}
+
+/* 性别图标(详情页名字旁,15px) */
+.gender-icon {
+  width: 29rpx;
+  height: 29rpx;
+}
+
+.head-stats {
+  display: flex;
+  align-items: center;
+  gap: 38rpx;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 8rpx 0;
+}
+
+.stat-icon {
+  width: 46rpx;
+  height: 46rpx;
+}
+
+.stat-num {
+  font-size: 23rpx;
+  font-weight: 500;
+  color: #000000;
+}
+
+/* 档案信息:两列卡片,行距 20px(38rpx) */
+.info {
+  margin-top: 19rpx;
+  padding-bottom: 29rpx;
+}
+
+.info-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 38rpx;
+}
+
+.info-row:last-child {
+  margin-bottom: 0;
+}
+
+.info-item {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 19rpx;
+}
+
+/* 图标圆底 35px #faefdb,图标 24px */
+.info-icon-wrap {
+  width: 67rpx;
+  height: 67rpx;
+  border-radius: 50%;
+  background: #faefdb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.info-icon {
+  width: 46rpx;
+  height: 46rpx;
+}
+
+.info-texts {
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+  justify-content: center;
+  min-width: 0;
+}
+
+.info-label {
+  font-size: 23rpx;
+  font-weight: 500;
+  color: #999999;
+  white-space: nowrap;
+}
+
+.info-value {
+  font-size: 27rpx;
+  font-weight: 500;
+  color: #000000;
+}
+
+/* 性格整行,值可换行 */
+.info-texts-full {
+  flex: 1;
+}
+
+.info-texts-full .info-value {
+  line-height: 1.5;
+}
+
+/* 区块标题:18px bold,黄条(#ffd16e)垫在文字下方 */
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 19rpx;
+  margin-bottom: 19rpx;
+}
+
+.section-title-wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.section-title-wrap::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10rpx;
+  height: 8rpx;
+  background: #ffd16e;
+  z-index: -1;
+}
+
+.section-title {
+  font-size: 35rpx;
+  font-weight: 700;
+  color: #000000;
+  line-height: 48rpx;
+}
+
+/* 「更多」按设计稿 12px #666 */
+.section-more {
+  font-size: 23rpx;
+  font-weight: 500;
+  color: #666666;
+  padding: 8rpx 0;
+}
+
+/* 相册:80px 方块,间距 10px,4 张一行 */
+.album-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -19rpx;
+}
+
+.album-img {
+  width: 154rpx;
+  height: 154rpx;
+  border-radius: 19rpx;
+  background: #f1f1f1;
+  margin: 0 19rpx 19rpx 0;
+}
+
+/* 动态列表 */
+.posts {
+  margin-top: 10rpx;
+}
+
+.post {
+  margin-bottom: 38rpx;
+}
+
+.post-content {
+  font-size: 31rpx;
+  color: #000000;
+  line-height: 46rpx;
+  margin-bottom: 19rpx;
+}
+
+/* 多图:110px 方块九宫格 */
+.post-images {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -19rpx;
+}
+
+.post-img {
+  width: 212rpx;
+  height: 212rpx;
+  border-radius: 19rpx;
+  background: #f1f1f1;
+  margin: 0 19rpx 19rpx 0;
+}
+
+/* 单图:160x214 竖版 */
+.post-single-img {
+  width: 308rpx;
+  height: 412rpx;
+  border-radius: 19rpx;
+  background: #f1f1f1;
+}
+
+/* 动态底部:日期 + 操作,下边框分隔 */
+.post-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 19rpx;
+  border-bottom: 1rpx solid #dddddd;
+}
+
+.post-date {
+  font-size: 23rpx;
+  color: #666666;
+}
+
+.post-ops {
+  display: flex;
+  align-items: center;
+}
+
+.post-more-icon {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 19rpx;
+}
+
+.post-like {
+  display: flex;
+  align-items: center;
+  padding: 8rpx 0;
+}
+
+.post-like-icon {
+  width: 46rpx;
+  height: 46rpx;
+  margin-right: 6rpx;
+}
+
+.post-like-num {
+  font-size: 23rpx;
+  color: #666666;
+}
+
+/* 底部「我想领养」:居中橙色胶囊(z-index 高于白卡) */
+.adopt-fixed {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(0rpx + env(safe-area-inset-bottom));
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+}
+
+.adopt-btn {
+  background: #ff9e20;
+  color: #ffffff;
+  font-size: 31rpx;
+  font-weight: 700;
+  padding: 27rpx 65rpx;
+  border-radius: 138rpx;
+}

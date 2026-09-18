@@ -1,0 +1,47 @@
+<view class="page">
+  <!-- 标题 -->
+  <view class="page-title">轮播图管理</view>
+
+  <!-- Tab 栏:首页轮播 / 首页顶图 -->
+  <view class="tab-bar" wx:if="{{isAdmin}}">
+    <view
+      class="tab-item {{tab === 'home_banner' ? 'tab-active' : ''}}"
+      data-tab="home_banner" bindtap="onSwitchTab"
+    >首页轮播</view>
+    <view
+      class="tab-item {{tab === 'home_top' ? 'tab-active' : ''}}"
+      data-tab="home_top" bindtap="onSwitchTab"
+    >首页顶图</view>
+  </view>
+
+  <view wx:if="{{loading}}" class="text-muted center">加载中...</view>
+
+  <!-- 首页轮播:缩略图+标题+正文 -->
+  <block wx:elif="{{tab === 'home_banner'}}">
+    <view wx:if="{{banners.length > 0}}" class="banner-list">
+      <view class="banner-item" wx:for="{{banners}}" wx:key="_id" data-id="{{item._id}}" bindtap="onGoDetail">
+        <image class="banner-thumb" src="{{item.image_url}}" mode="aspectFill" lazy-load="{{true}}" />
+        <view class="banner-info">
+          <view class="banner-title">{{item.title || '未设置标题'}}</view>
+          <view class="banner-content">{{item.content || '未设置内容'}}</view>
+        </view>
+      </view>
+    </view>
+    <empty wx:else text="还没有轮播图,点击下方按钮添加" />
+  </block>
+
+  <!-- 首页顶图:全宽图片卡片 -->
+  <block wx:elif="{{tab === 'home_top'}}">
+    <view wx:if="{{banners.length > 0}}" class="top-list">
+      <view class="top-item" wx:for="{{banners}}" wx:key="_id" data-id="{{item._id}}" bindtap="onGoDetail">
+        <image class="top-img" src="{{item.image_url}}" mode="aspectFill" lazy-load="{{true}}" />
+      </view>
+    </view>
+    <empty wx:else text="还没有顶图,点击下方按钮添加" />
+  </block>
+
+  <!-- 底部添加按钮:浮动居中 -->
+  <view class="bottom-bar" wx:if="{{isAdmin}}">
+    <view class="pill-btn {{reachMax ? 'pill-off' : ''}}" bindtap="onAdd">添加</view>
+  </view>
+</view>

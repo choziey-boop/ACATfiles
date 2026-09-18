@@ -1,0 +1,256 @@
+.page {
+  background: #ffffff;
+  min-height: 100vh;
+  padding-bottom: 60rpx;
+}
+
+/* ---- 表单项(通栏行,细分隔线) ---- */
+.item {
+  padding: 32rpx;
+  border-bottom: 1rpx solid #e5e6eb;
+}
+
+.item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 108rpx;
+  padding-top: 0;
+  padding-bottom: 0;
+  box-sizing: border-box;
+}
+
+.item-sub {
+  background: #fafafa;
+}
+
+.item-label {
+  font-size: 28rpx;
+  color: #1d2129;
+  line-height: 1.4;
+}
+.item:not(.item-row) .item-label {
+  margin-bottom: 16rpx;
+}
+
+.req {
+  color: #e8604c;
+  margin-right: 8rpx;
+}
+
+.label-tip {
+  font-size: 24rpx;
+  color: #c9cdd4;
+  margin-left: 16rpx;
+}
+
+.item-input {
+  font-size: 32rpx;
+  color: #1d2129;
+  width: 100%;
+}
+
+.input-right {
+  text-align: right;
+  width: 300rpx;
+}
+
+.ph {
+  color: #c9cdd4;
+}
+
+.item-textarea {
+  background: #f5f5f5;
+  border-radius: 14rpx;
+  padding: 24rpx;
+  font-size: 32rpx;
+  width: 100%;
+  box-sizing: border-box;
+  height: 220rpx;
+}
+
+/* ---- 单选组 ---- */
+.radio-group {
+  display: flex;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  margin-right: 48rpx;
+}
+
+.radio-dot {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  border: 2rpx solid #c9cdd4;
+  box-sizing: border-box;
+  margin-right: 14rpx;
+  position: relative;
+}
+
+.radio-on {
+  border-color: #f2963d;
+}
+.radio-on::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 18rpx;
+  height: 18rpx;
+  border-radius: 50%;
+  background: #f2963d;
+}
+
+.radio-text {
+  font-size: 32rpx;
+  color: #1d2129;
+}
+
+/* ---- 横向行右侧 ---- */
+.row-right {
+  display: flex;
+  align-items: center;
+}
+
+.row-value {
+  font-size: 30rpx;
+  color: #666666;
+  margin-right: 8rpx;
+}
+
+.row-ph {
+  color: #c9cdd4;
+}
+
+.chevron {
+  font-size: 40rpx;
+  color: #c9cdd4;
+  line-height: 1;
+  margin-left: 8rpx;
+}
+
+.avatar-img,
+.avatar-placeholder {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  background: #f1f1f1;
+}
+
+.avatar-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c9cdd4;
+  font-size: 44rpx;
+}
+
+/* ---- 照片九宫格 ---- */
+.photo-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.photo-box {
+  position: relative;
+  width: 158rpx;
+  height: 158rpx;
+  margin: 0 16rpx 16rpx 0;
+}
+
+.photo-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8rpx;
+  background: #f1f1f1;
+}
+
+.photo-cover {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: rgba(242, 150, 61, 0.95);
+  color: #ffffff;
+  font-size: 20rpx;
+  padding: 2rpx 12rpx;
+  border-radius: 0 8rpx 8rpx 8rpx;
+}
+
+.photo-del {
+  position: absolute;
+  top: -12rpx;
+  right: -12rpx;
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: #ffffff;
+  font-size: 26rpx;
+  line-height: 36rpx;
+  text-align: center;
+}
+
+.photo-add {
+  width: 158rpx;
+  height: 158rpx;
+  margin-bottom: 16rpx;
+  border: 2rpx dashed #dddddd;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999999;
+  font-size: 22rpx;
+  box-sizing: border-box;
+}
+
+/* ---- 管理设置分组 ---- */
+.admin-title {
+  padding: 32rpx 32rpx 8rpx;
+  font-size: 24rpx;
+  color: #aaaaaa;
+}
+
+/* ---- 保存按钮(设计稿:浅橙底胶囊) ---- */
+.save-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 48rpx;
+}
+
+.save-btn {
+  min-width: 300rpx;
+  background: #fff4dd;
+  color: #ff8b26;
+  font-size: 32rpx;
+  font-weight: 600;
+  text-align: center;
+  padding: 22rpx 46rpx;
+  border-radius: 50rpx;
+}
+
+.save-off {
+  opacity: 0.5;
+}
+
+/* ---- 猫咪编号 ---- */
+.code-text {
+  font-size: 30rpx;
+  color: #333;
+  line-height: 108rpx;
+}
+
+/* 隐藏 canvas:不可见但保留在渲染树内,实际输出尺寸由 JS 设置 canvas.width/height 决定 */
+.hidden-canvas {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0.01;
+  pointer-events: none;
+}

@@ -1,0 +1,107 @@
+<privacy-modal />
+
+<view class="page">
+  <!-- 顶部背景:固定不动,内容滚动时从它上面滑过 -->
+  <view class="main-bg">
+    <image class="main-bg-img" src="/images/main_bg.png" mode="widthFix" />
+  </view>
+
+  <!-- 滚动区:顶边对齐胶囊按钮下边缘,内容上滚到此硬截断;背景图在上方露出 -->
+  <scroll-view class="page-scroll" scroll-y enhanced show-scrollbar="{{false}}" style="top: {{scrollTop}}px;">
+    <view class="title-gap"></view>
+
+    <view class="page-title">猫咪档案</view>
+
+    <!-- 搜索 + 排序/视图切换 -->
+    <view class="search-row">
+      <view class="search-box">
+        <image class="search-icon" src="/assets/search-icon.svg" mode="aspectFit" />
+        <input class="search-input" placeholder="名字，性格" placeholder-class="search-ph" value="{{keyword}}" bindinput="onInputKeyword" />
+        <text wx:if="{{keyword}}" class="search-clear" catchtap="onClearKeyword">×</text>
+      </view>
+      <image class="tool-icon" src="/assets/sort.svg" mode="aspectFit" bindtap="onToggleSort" />
+      <image wx:if="{{viewMode === 'list'}}" class="tool-icon" src="/assets/list-view.svg" mode="aspectFit" bindtap="onToggleView" />
+      <image wx:else class="tool-icon" src="/assets/grid-view.svg" mode="aspectFit" bindtap="onToggleView" />
+    </view>
+
+    <!-- 筛选 chips:默认白底橙字,选中橙底白字;「全部」无选中样式 -->
+    <scroll-view scroll-x class="chips" enhanced show-scrollbar="{{false}}">
+      <view
+        wx:for="{{chips}}"
+        wx:key="key"
+        class="chip {{item.key === 'all' ? 'chip-all' : ''}} {{activeChip === item.key && item.key !== 'all' ? 'chip-on' : ''}}"
+        data-key="{{item.key}}"
+        bindtap="onChipTap"
+      >
+        {{item.label}}{{item.key === 'all' ? ' ' + total : ''}}
+      </view>
+    </scroll-view>
+
+    <view wx:if="{{loading}}" class="text-muted center">加载中...</view>
+    <empty wx:elif="{{cats.length === 0}}" text="没有找到符合条件的猫咪" />
+
+    <!-- 列表视图 -->
+    <view wx:elif="{{viewMode === 'list'}}" class="cat-list">
+      <view
+        class="cat-card"
+        wx:for="{{cats}}"
+        wx:key="_id"
+        data-id="{{item._id}}"
+        bindtap="onGoDetail"
+      >
+        <image class="cat-avatar" src="{{item.avatar || item.cover_image}}" mode="aspectFill" lazy-load="{{true}}" />
+        <view class="cat-body">
+          <view class="cat-name-row">
+            <text class="cat-name">{{item.name}}</text>
+            <image wx:if="{{item.gender === 'male'}}" class="gender-icon" src="/assets/male.svg" mode="aspectFit" />
+            <image wx:elif="{{item.gender === 'female'}}" class="gender-icon" src="/assets/female.svg" mode="aspectFit" />
+          </view>
+          <view class="cat-sub">
+            <text wx:for="{{item.subParts}}" wx:for-item="p" wx:key="index" style="color: {{p.color}};">{{p.text}}{{index < item.subParts.length - 1 ? ' · ' : ''}}</text>
+          </view>
+        </view>
+        <image
+          class="heart-icon"
+          src="{{item.liked ? '/assets/heart-fill.svg' : '/assets/heart-outline.svg'}}"
+          mode="aspectFit"
+          data-id="{{item._id}}"
+          catchtap="onLike"
+        />
+      </view>
+    </view>
+
+    <!-- 网格视图 -->
+    <view wx:else class="cat-grid">
+      <view
+        class="grid-card"
+        wx:for="{{cats}}"
+        wx:key="_id"
+        data-id="{{item._id}}"
+        bindtap="onGoDetail"
+      >
+        <view class="grid-img-wrap">
+          <image class="grid-img" src="{{item.avatar || item.cover_image}}" mode="aspectFill" lazy-load="{{true}}" />
+        </view>
+        <view class="grid-info">
+          <view class="grid-name-row">
+            <view class="grid-name-wrap">
+              <text class="grid-name">{{item.name}}</text>
+              <image wx:if="{{item.gender === 'male'}}" class="gender-icon" src="/assets/male.svg" mode="aspectFit" />
+              <image wx:elif="{{item.gender === 'female'}}" class="gender-icon" src="/assets/female.svg" mode="aspectFit" />
+            </view>
+            <image
+              class="heart-icon heart-sm"
+              src="{{item.liked ? '/assets/heart-fill.svg' : '/assets/heart-outline.svg'}}"
+              mode="aspectFit"
+              data-id="{{item._id}}"
+              catchtap="onLike"
+            />
+          </view>
+          <view class="grid-sub">
+            <text wx:for="{{item.subParts}}" wx:for-item="p" wx:key="index" style="color: {{p.color}};">{{p.text}}{{index < item.subParts.length - 1 ? ' · ' : ''}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

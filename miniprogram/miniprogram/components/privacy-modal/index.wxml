@@ -1,0 +1,17 @@
+<view class="mask" wx:if="{{visible}}">
+  <view class="modal">
+    <view class="modal-title">用户隐私保护指引</view>
+    <scroll-view class="modal-body" scroll-y>
+      <text>
+感谢你使用本小程序!本程序为校园公益性质,仅在你提交领养申请时收集你主动填写的联系方式(手机号/微信号)、领养原因与居住情况,用于管理员进行领养资格审核,不涉及任何费用,不会用于其他用途,也不会向第三方提供。
+
+使用前请阅读并同意《用户隐私保护指引》。
+      </text>
+      <view class="contract-link" bindtap="onOpenContract">查看《用户隐私保护指引》全文</view>
+    </scroll-view>
+    <view class="modal-actions">
+      <button class="btn btn-plain" bindtap="onDisagree">暂不同意</button>
+      <button class="btn btn-agree" open-type="agreePrivacyAuthorization" bindagreeprivacyauthorization="onAgree">同意</button>
+    </view>
+  </view>
+</view>

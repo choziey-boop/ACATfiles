@@ -1,0 +1,45 @@
+<view class="page">
+  <!-- 图片 -->
+  <view class="image-wrap" bindtap="onChooseImage">
+    <image wx:if="{{imageUrl}}" class="banner-image" src="{{imageUrl}}" mode="aspectFill" />
+    <view wx:else class="image-placeholder">
+      <text class="ph-icon">+</text>
+      <text class="ph-text">上传图片</text>
+    </view>
+    <view wx:if="{{uploading}}" class="image-mask">{{uploadingText}}</view>
+  </view>
+
+  <!-- 标题(仅首页轮播) -->
+  <view class="form-item" wx:if="{{type === 'home_banner'}}">
+    <view class="form-label">标题</view>
+    <input
+      class="form-input"
+      placeholder="请输入标题(选填)"
+      placeholder-class="ph"
+      value="{{title}}"
+      maxlength="50"
+      bindinput="onTitleInput"
+    />
+  </view>
+
+  <!-- 内容(仅首页轮播) -->
+  <view class="form-item" wx:if="{{type === 'home_banner'}}">
+    <view class="form-label">内容</view>
+    <textarea
+      class="form-textarea"
+      placeholder="请输入正文(选填,仅在有内容时用户可点击查看)"
+      placeholder-class="ph"
+      value="{{content}}"
+      maxlength="5000"
+      bindinput="onContentInput"
+    />
+  </view>
+
+  <!-- 底部操作:背景透明,按钮浮动 -->
+  <view class="bottom-bar">
+    <view class="pill-btn pill-cancel" bindtap="onCancel">取消</view>
+    <view class="pill-btn pill-save {{saving || uploading ? 'pill-off' : ''}}" bindtap="onSave">
+      {{saving ? '保存中...' : '保存'}}
+    </view>
+  </view>
+</view>

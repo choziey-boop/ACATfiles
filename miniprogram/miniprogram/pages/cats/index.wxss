@@ -1,0 +1,282 @@
+.page {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(180deg, #fff0db 0%, #ffffff 468px);
+}
+
+/* 顶部背景:绝对定位固定,滚动内容从上方滑过 */
+.main-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.main-bg-img {
+  width: 100%;
+  display: block;
+}
+
+/* 滚动区:绝对定位,顶边 = 胶囊按钮下边缘(行内 style 注入),其余铺满;透明背景露出固定背景图 */
+.page-scroll {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+/* 标题上方留白 */
+.title-gap {
+  height: 12rpx;
+}
+
+/* 标题:30px 粗体 + 橙黄下划线(叠在文字上);随内容滚动 */
+.page-title {
+  position: relative;
+  display: inline-block;
+  font-size: 58rpx;
+  font-weight: 700;
+  color: #1d2129;
+  line-height: 42rpx;
+  padding: 24rpx 40rpx 0;
+  z-index: 1;
+}
+
+.page-title::after {
+  content: '';
+  position: absolute;
+  left: 40rpx;
+  right: 40rpx;
+  bottom: -6rpx;
+  height: 10rpx;
+  background: #ffb200;
+  z-index: -1;
+}
+
+/* 搜索行 */
+.search-row {
+  display: flex;
+  align-items: center;
+  gap: 19rpx;
+  padding: 20rpx 40rpx 0;
+}
+
+.search-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 100rpx;
+  padding: 0 20rpx;
+  height: 62rpx;
+}
+
+.search-icon {
+  width: 46rpx;
+  height: 46rpx;
+  margin-right: 10rpx;
+  flex-shrink: 0;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 27rpx;
+}
+
+.search-ph {
+  color: #cccccc;
+}
+
+.search-clear {
+  font-size: 36rpx;
+  color: #c9cdd4;
+  padding: 0 8rpx;
+}
+
+.tool-icon {
+  width: 46rpx;
+  height: 46rpx;
+  flex-shrink: 0;
+}
+
+.tool-icon-on {
+  opacity: 0.6;
+}
+
+/* 筛选 chips:默认白底橙字(#db8f38);选中橙底白字(#e8b377);「全部」透明底 #b3600 无选中态 */
+.chips {
+  white-space: nowrap;
+  padding: 20rpx 40rpx 20rpx;
+  box-sizing: border-box;
+}
+
+.chip {
+  display: inline-block;
+  padding: 6rpx 13rpx;
+  margin-right: 19rpx;
+  border-radius: 12rpx;
+  background: #ffffff;
+  color: #db8f38;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.chip-on {
+  background: #e8b377;
+  color: #ffffff;
+}
+
+.chip-all {
+  background: transparent;
+  color: #b36000;
+}
+
+/* 列表视图 */
+.cat-list {
+  padding: 0 40rpx 220rpx;
+}
+
+.cat-card {
+  display: flex;
+  align-items: center;
+  gap: 19rpx;
+  background: #fafafa;
+  border-radius: 19rpx;
+  padding: 31rpx;
+  margin-bottom: 19rpx;
+}
+
+.cat-avatar {
+  width: 85rpx;
+  height: 85rpx;
+  border-radius: 50%;
+  background: #f1f1f1;
+  flex-shrink: 0;
+}
+
+.cat-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+
+.cat-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.cat-name {
+  font-size: 31rpx;
+  font-weight: 500;
+  color: #1d2129;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gender-icon {
+  width: 29rpx;
+  height: 29rpx;
+  flex-shrink: 0;
+}
+
+.cat-sub {
+  font-size: 23rpx;
+  font-weight: 500;
+}
+
+.heart-icon {
+  width: 46rpx;
+  height: 46rpx;
+  flex-shrink: 0;
+  padding: 10rpx;
+  margin: -10rpx;
+}
+
+.heart-sm {
+  width: 42rpx;
+  height: 42rpx;
+  padding: 8rpx;
+  margin: -8rpx;
+}
+
+/* 网格视图 */
+.cat-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 19rpx;
+  padding: 0 40rpx 220rpx;
+}
+
+.grid-card {
+  width: calc(50% - 10rpx);
+  background: #fafafa;
+  border-radius: 19rpx;
+  padding: 31rpx;
+  box-sizing: border-box;
+}
+
+.grid-img-wrap {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  position: relative;
+  border-radius: 23rpx;
+  overflow: hidden;
+  background: #f1f1f1;
+}
+
+.grid-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.grid-info {
+  margin-top: 19rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+
+.grid-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.grid-name-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  min-width: 0;
+}
+
+.grid-name {
+  font-size: 31rpx;
+  font-weight: 500;
+  color: #1d2129;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.grid-sub {
+  font-size: 23rpx;
+  font-weight: 500;
+}
+
+.center {
+  text-align: center;
+  padding: 120rpx 0;
+}

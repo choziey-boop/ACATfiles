@@ -1,0 +1,144 @@
+.page {
+  min-height: 100vh;
+  padding-bottom: 180rpx;
+  background: #ffffff;
+}
+
+/* 标题:24px 粗体 + 黄色下划线 */
+.page-title {
+  position: relative;
+  display: inline-block;
+  font-size: 46rpx;
+  font-weight: 700;
+  color: #1d2129;
+  padding: 30rpx 40rpx 16rpx;
+  z-index: 1;
+}
+
+.page-title::after {
+  content: '';
+  position: absolute;
+  left: 40rpx;
+  right: 40rpx;
+  bottom: 8rpx;
+  height: 10rpx;
+  background: #ffd16e;
+  z-index: -1;
+}
+
+/* Tab 栏 */
+.tab-bar {
+  display: flex;
+  gap: 31rpx;
+  padding: 16rpx 40rpx;
+}
+
+.tab-item {
+  font-size: 31rpx;
+  font-weight: 500;
+  color: #999999;
+  padding: 9rpx 0;
+}
+
+.tab-active {
+  color: #000000;
+  font-weight: 700;
+}
+
+/* 首页轮播列表(缩略图+标题+正文) */
+.banner-list {
+  padding: 0 40rpx;
+}
+
+.banner-item {
+  display: flex;
+  gap: 21rpx;
+  padding: 31rpx 0;
+  border-bottom: 1rpx solid #dddddd;
+}
+
+.banner-thumb {
+  width: 244rpx;
+  height: 119rpx;
+  border-radius: 8rpx;
+  background: #f1f1f1;
+  flex-shrink: 0;
+}
+
+.banner-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+
+.banner-title {
+  font-size: 31rpx;
+  color: #1d2129;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.banner-content {
+  font-size: 23rpx;
+  color: #666666;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* 首页顶图列表:全宽图片卡片(350x170) */
+.top-list {
+  padding: 0 40rpx;
+}
+
+.top-item {
+  padding: 31rpx 0;
+  border-bottom: 1rpx solid #dddddd;
+}
+
+.top-img {
+  width: 100%;
+  height: 327rpx;
+  border-radius: 19rpx;
+  background: #f1f1f1;
+  display: block;
+}
+
+/* 底部添加:浮动居中,淡橙底 */
+.bottom-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  padding: 24rpx 40rpx calc(24rpx + env(safe-area-inset-bottom));
+}
+
+.pill-btn {
+  background: #fff4dd;
+  color: #ff8b26;
+  font-size: 31rpx;
+  font-weight: 600;
+  text-align: center;
+  padding: 23rpx 44rpx;
+  border-radius: 48rpx;
+}
+
+.pill-off {
+  opacity: 0.5;
+}
+
+.center {
+  text-align: center;
+  padding: 120rpx 0;
+}

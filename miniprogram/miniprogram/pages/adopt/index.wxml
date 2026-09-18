@@ -1,0 +1,17 @@
+<privacy-modal />
+
+<view class="page">
+  <view class="tip card">
+    💡 领养代替购买。以下猫咪正在等待一个温暖的家,点击卡片了解 TA 们的故事。
+  </view>
+
+  <skeleton wx:if="{{loading}}" count="{{4}}" />
+  <block wx:elif="{{cats.length > 0}}">
+    <view class="grid">
+      <view class="grid-item" wx:for="{{cats}}" wx:key="_id">
+        <cat-card cat="{{item}}" show-urgent="{{true}}" />
+      </view>
+    </view>
+  </block>
+  <empty wx:else text="暂时没有待领养的猫咪" />
+</view>

@@ -1,0 +1,174 @@
+<privacy-modal />
+
+<view wx:if="{{loading}}" class="loading-wrap">
+  <text class="text-muted">加载中...</text>
+</view>
+
+<empty wx:elif="{{notFound}}" text="猫咪档案不存在或已下线" />
+
+<block wx:else>
+  <!-- 返回按钮:透明,叠在头图左上,垂直对齐右上角胶囊 -->
+  <view class="nav-back" style="top: {{navBackTop}}px;" bindtap="onBack">
+    <image class="nav-back-icon" src="/assets/back.svg" mode="aspectFit" />
+  </view>
+
+  <!-- 头图:390x449,被下方内容卡压住下缘 -->
+  <swiper
+    class="main-swiper"
+    wx:if="{{mainImages.length > 0}}"
+    indicator-dots="{{mainImages.length > 1}}"
+    indicator-color="rgba(255,255,255,0.5)"
+    indicator-active-color="#ffffff"
+    circular
+  >
+    <swiper-item wx:for="{{mainImages}}" wx:key="*this">
+      <image
+        class="main-image"
+        src="{{item}}"
+        mode="aspectFill"
+        data-url="{{item}}"
+        bindtap="onPreviewMain"
+      />
+    </swiper-item>
+  </swiper>
+
+  <!-- 内容卡:白卡圆角 25px,上压头图 -->
+  <view class="card">
+    <!-- 名字 + 浏览/点赞 -->
+    <view class="head-row">
+      <view class="head-name">
+        <text class="cat-name">{{cat.name}}</text>
+        <image wx:if="{{cat.gender === 'male'}}" class="gender-icon" src="/assets/male.svg" mode="aspectFit" />
+        <image wx:elif="{{cat.gender === 'female'}}" class="gender-icon" src="/assets/female.svg" mode="aspectFit" />
+      </view>
+      <view class="head-stats">
+        <view class="stat">
+          <image class="stat-icon" src="/assets/heat.svg" mode="aspectFit" />
+          <text class="stat-num">{{cat.views}}</text>
+        </view>
+        <view class="stat" bindtap="onLikeCat">
+          <image class="stat-icon" src="{{liked ? '/assets/heart-fill.svg' : '/assets/heart-outline.svg'}}" mode="aspectFit" />
+          <text class="stat-num">{{totalLikes}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 档案信息:两列卡片(图标圆底 + label + 值) -->
+    <view class="info">
+      <view class="info-row">
+        <view class="info-item">
+          <view class="info-icon-wrap"><image class="info-icon" src="/assets/info-gender.svg" mode="aspectFit" /></view>
+          <view class="info-texts">
+            <text class="info-label">性别</text>
+            <text class="info-value">{{cat.genderText}}</text>
+          </view>
+        </view>
+        <view class="info-item">
+          <view class="info-icon-wrap"><image class="info-icon" src="/assets/info-calendar.svg" mode="aspectFit" /></view>
+          <view class="info-texts">
+            <text class="info-label">出生日期</text>
+            <text class="info-value">{{cat.birthdayText || '未知'}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="info-row">
+        <view class="info-item">
+          <view class="info-icon-wrap"><image class="info-icon" src="/assets/info-age.svg" mode="aspectFit" /></view>
+          <view class="info-texts">
+            <text class="info-label">年龄</text>
+            <text class="info-value">{{cat.ageText}}</text>
+          </view>
+        </view>
+        <view class="info-item">
+          <view class="info-icon-wrap"><image class="info-icon" src="/assets/info-neutered.svg" mode="aspectFit" /></view>
+          <view class="info-texts">
+            <text class="info-label">绝育状态</text>
+            <text class="info-value">{{cat.is_neutered ? '已绝育' : '未绝育'}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="info-row" wx:if="{{cat.description}}">
+        <view class="info-item">
+          <view class="info-icon-wrap"><image class="info-icon" src="/assets/info-smile.svg" mode="aspectFit" /></view>
+          <view class="info-texts info-texts-full">
+            <text class="info-label">性格</text>
+            <text class="info-value">{{cat.description}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 相册:预览前 4 张,「更多」打开相册页看全部 -->
+    <block wx:if="{{images.length > 0}}">
+      <view class="section-head">
+        <view class="section-title-wrap"><text class="section-title">相册</text></view>
+        <text class="section-more" bindtap="onGoAlbum">更多</text>
+      </view>
+      <view class="album-grid">
+        <image
+          class="album-img"
+          wx:for="{{albumPreview}}"
+          wx:key="*this"
+          src="{{item}}"
+          mode="aspectFill"
+          lazy-load="{{true}}"
+          data-url="{{item}}"
+          bindtap="onPreviewImage"
+        />
+      </view>
+    </block>
+
+    <!-- 动态 -->
+    <block wx:if="{{activities.length > 0}}">
+      <view class="section-head">
+        <view class="section-title-wrap"><text class="section-title">动态</text></view>
+      </view>
+      <view class="posts">
+        <view class="post" wx:for="{{activities}}" wx:key="_id">
+          <view class="post-content" wx:if="{{item.content}}">{{item.content}}</view>
+          <!-- 单图:竖版大图;多图:九宫格方块 -->
+          <view wx:if="{{item.images && item.images.length === 1}}" class="post-single">
+            <image
+              class="post-single-img"
+              src="{{item.images[0]}}"
+              mode="aspectFill"
+              lazy-load="{{true}}"
+              data-url="{{item.images[0]}}"
+              data-images="{{item.images}}"
+              bindtap="onPreviewActivityImage"
+            />
+          </view>
+          <view wx:elif="{{item.images && item.images.length > 1}}" class="post-images">
+            <image
+              class="post-img"
+              wx:for="{{item.images}}"
+              wx:for-item="img"
+              wx:key="*this"
+              src="{{img}}"
+              mode="aspectFill"
+              lazy-load="{{true}}"
+              data-url="{{img}}"
+              data-images="{{item.images}}"
+              bindtap="onPreviewActivityImage"
+            />
+          </view>
+          <view class="post-foot">
+            <text class="post-date">{{item.created_at_text}}</text>
+            <view class="post-ops">
+              <image wx:if="{{isAdmin}}" class="post-more-icon" data-id="{{item._id}}" catchtap="onActivityOps" src="/assets/more-dot.svg" mode="aspectFit" />
+              <view class="post-like" data-id="{{item._id}}" bindtap="onLikeActivity">
+                <image class="post-like-icon" src="{{item.liked ? '/assets/heart-fill.svg' : '/assets/heart-outline.svg'}}" mode="aspectFit" />
+                <text class="post-like-num">{{item.likes}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 领养入口:仅待领养状态显示,居中胶囊按钮 -->
+  <view wx:if="{{cat.status === 'available'}}" class="adopt-fixed">
+    <view class="adopt-btn" bindtap="onGoAdopt">我想领养</view>
+  </view>
+</block>

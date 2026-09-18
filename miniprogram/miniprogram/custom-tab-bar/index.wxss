@@ -1,0 +1,39 @@
+/* 悬浮胶囊 tabBar(设计稿:bottom 34px,宽 275px,白 40% 半透明,圆角 90px,投影) */
+.tab-bar {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 65rpx;
+  width: 529rpx;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 173rpx;
+  box-shadow: 0 0 19rpx rgba(0, 0, 0, 0.1);
+  padding: 19rpx 0;
+  display: flex;
+  justify-content: center;
+  gap: 77rpx;
+  z-index: 999;
+}
+
+.tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10rpx;
+  width: 69rpx;
+}
+
+.tab-icon {
+  width: 58rpx;
+  height: 58rpx;
+}
+
+.tab-text {
+  font-size: 17rpx;
+  color: #999999;
+  white-space: nowrap;
+}
+
+.tab-text-on {
+  color: #1d2129;
+}

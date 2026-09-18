@@ -1,0 +1,135 @@
+.page {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(180deg, #fff0db 0%, #ffffff 468px);
+}
+
+/* 固定背景:渐变之上叠顶部纹理 + 右侧装饰图形 */
+.main-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-texture {
+  width: 100%;
+  display: block;
+}
+
+/* 装饰图形:设计稿 43:1622,右侧偏上 */
+.bg-deco {
+  position: absolute;
+  top: 197rpx;
+  right: 183rpx;
+  width: 179rpx;
+  height: 225rpx;
+}
+
+/* 滚动区:顶边 = 胶囊下边缘(行内 style),透明背景露出固定背景 */
+.page-scroll {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+.title-gap {
+  height: 12rpx;
+}
+
+/* 标题行:左标题 + 右橙色圆徽(徽标压在白卡上层);顶部对齐保证标题与猫咪档案页位置一致 */
+.head-row {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0 40rpx;
+}
+
+/* 标题:30px 粗体 + #ffb200 黄条垫在文字下方 */
+.page-title {
+  position: relative;
+  display: inline-block;
+  font-size: 58rpx;
+  font-weight: 700;
+  color: #1d2129;
+  line-height: 42rpx;
+  padding: 24rpx 0 0;
+  z-index: 1; 
+}
+
+.page-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10rpx;
+  height: 10rpx;
+  background: #ffb200;
+  z-index: -1;
+}
+
+/* 橙色圆徽:#ff9000 圆底 + 白边,内嵌猫爪 logo(60px) */
+.logo-badge {
+  width: 115rpx;
+  height: 115rpx;
+  border-radius: 50%;
+  background: #ff9000;
+  border: 6rpx solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo-img {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+}
+
+/* 内容白卡:350 宽,上圆角 20px;负边距上移到徽标底下(徽标压卡 ~21px,对齐设计稿) */
+.content-card {
+  position: relative;
+  z-index: 1;
+  margin: 0rpx 38rpx 0;
+  background: #ffffff;
+  border-radius: 38rpx 38rpx 0 0;
+  padding: 62rpx 31rpx 60rpx;
+}
+
+/* 正文:14px,行高 22px,段距 15px */
+.para {
+  display: block;
+  font-size: 27rpx;
+  color: #000000;
+  line-height: 42rpx;
+  margin-bottom: 29rpx;
+}
+
+.para:last-child {
+  margin-bottom: 0;
+}
+
+/* 管理入口:14px #ff8e16 居中 */
+.admin-entry {
+  text-align: center;
+  color: #ff8e16;
+  font-size: 27rpx;
+  font-weight: 500;
+  margin-top: 40rpx;
+}
+
+/* 底部文字(隐藏初始化入口载体),底部留白给悬浮 tabBar */
+.footer {
+  text-align: center;
+  font-size: 21rpx;
+  padding: 40rpx 0 220rpx;
+}

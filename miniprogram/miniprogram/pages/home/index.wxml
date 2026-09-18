@@ -1,0 +1,98 @@
+<privacy-modal />
+
+<view class="page">
+  <!-- 顶部区域:从后台顶图随机抽一张展示,无顶图用静态背景兜底 -->
+  <view class="main-bg">
+    <image wx:if="{{topImage}}" class="top-img" src="{{topImage.image_url}}" mode="aspectFill" />
+    <image wx:else class="main-bg-img" src="/images/index_bg.png" mode="widthFix" />
+  </view>
+
+  <!-- 滚动区:顶边对齐轮播图位置(设计稿 164px ≈ 315rpx),内容上滚在此硬截断 -->
+  <scroll-view
+    class="page-scroll"
+    scroll-y
+    enhanced
+    show-scrollbar="{{false}}"
+    refresher-enabled
+    refresher-default-style="black"
+    refresher-triggered="{{refreshing}}"
+    bindrefresherrefresh="onRefresherRefresh"
+  >
+    <!-- 轮播(独立 banners 集合,管理后台维护) -->
+    <swiper
+      wx:if="{{banners.length > 0}}"
+      class="banner"
+      indicator-dots="{{banners.length > 1}}"
+      indicator-color="rgba(255,255,255,0.5)"
+      indicator-active-color="#ffffff"
+      autoplay
+      circular
+      interval="4000"
+    >
+      <swiper-item wx:for="{{banners}}" wx:key="_id">
+        <image
+          class="banner-img"
+          src="{{item.image_url}}"
+          mode="aspectFill"
+          data-id="{{item._id}}"
+          data-has-article="{{!!(item.title || item.content)}}"
+          bindtap="onBannerTap"
+        />
+      </swiper-item>
+    </swiper>
+
+    <!-- 猫咪动态:白色圆角卡片(设计稿 2:147) -->
+    <view class="feed-card">
+      <view class="feed-title"><text class="feed-title-text">猫咪动态</text></view>
+
+      <view wx:if="{{loading}}" class="text-muted center">加载中...</view>
+      <empty wx:elif="{{activities.length === 0}}" text="还没有动态,敬请期待" />
+
+      <view wx:else class="feed">
+      <view class="post" wx:for="{{activities}}" wx:key="_id">
+        <view class="post-head">
+          <!-- 左:头像 + 名字/性别 + 日期,点击进猫详情 -->
+          <view class="post-head-left" data-cat-id="{{item.cat_id}}" bindtap="onGoCat">
+            <image class="post-avatar" src="{{item.cat_avatar}}" mode="aspectFill" lazy-load="{{true}}" />
+            <view class="post-head-main">
+              <view class="post-name-row">
+                <text class="post-name">{{item.cat_name}}</text>
+                <image wx:if="{{item.cat_gender === 'male'}}" class="post-gender" src="/assets/male.svg" mode="aspectFit" />
+                <image wx:elif="{{item.cat_gender === 'female'}}" class="post-gender" src="/assets/female.svg" mode="aspectFit" />
+              </view>
+              <view class="post-date">{{item.created_at_text}}</view>
+            </view>
+          </view>
+          <!-- 右:点赞 + 数字(管理员另有 编辑/删除) -->
+          <view class="post-head-right">
+            <image
+              class="post-heart"
+              src="{{item.liked ? '/assets/heart-fill.svg' : '/assets/heart-outline.svg'}}"
+              mode="aspectFit"
+              data-id="{{item._id}}"
+              catchtap="onLikeActivity"
+            />
+            <text class="post-likes">{{item.likes || 0}}</text>
+            <image wx:if="{{isAdmin}}" class="post-more-icon" data-id="{{item._id}}" catchtap="onActivityOps" src="/assets/more-dot.svg" mode="aspectFit" />
+          </view>
+        </view>
+        <view class="post-content" wx:if="{{item.content}}">{{item.content}}</view>
+        <view class="post-images" wx:if="{{item.images && item.images.length > 0}}">
+          <image
+            class="post-img"
+            wx:for="{{item.images}}"
+            wx:for-item="img"
+            wx:key="*this"
+            src="{{img}}"
+            mode="aspectFill"
+            lazy-load="{{true}}"
+            data-url="{{img}}"
+            data-images="{{item.images}}"
+            bindtap="onPreviewImage"
+          />
+        </view>
+      </view>
+    </view>
+    </view>
+  </scroll-view>
+</view>

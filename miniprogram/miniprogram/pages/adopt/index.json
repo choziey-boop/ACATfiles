@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "领养中心",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "cat-card": "/components/cat-card/index",
+    "skeleton": "/components/skeleton/index",
+    "empty": "/components/empty/index",
+    "privacy-modal": "/components/privacy-modal/index"
+  }
+}

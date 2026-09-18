@@ -1,0 +1,206 @@
+.page {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+/* 固定背景:标题文字已合成在图里,滚动内容从上方滑过 */
+.main-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.main-bg-img {
+  width: 100%;
+  display: block;
+}
+
+/* 顶图:随机单张,高度 = 背景图(302px ≈ 581rpx) */
+.top-img {
+  width: 100%;
+  height: 581rpx;
+  display: block;
+}
+
+/* 滚动区:顶边 = 白卡顶(设计稿 184px),底部铺满;硬截断,顶部背景在上方露出 */
+.page-scroll {
+  position: absolute;
+  top: 354rpx;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+/* 轮播 350x170(滚动区内边距由自身承担) */
+.banner {
+  width: auto;
+  height: 327rpx;
+  border-radius: 19rpx;
+  overflow: hidden;
+  background: #f1f1f1;
+  margin: 0 40rpx;
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+}
+
+/* 猫咪动态白卡:圆角 18px,上边距 29px,左右 20px(设计稿 2:147) */
+.feed-card {
+  margin-top: 0rpx;
+  background: #ffffff;
+  border-radius: 35rpx;
+  padding: 56rpx 38rpx 0;
+}
+
+/* 区块标题:18px 粗体,黄条(#ffd16e 5px)垫在文字下方 */
+.feed-title {
+  margin-top: 0;
+}
+
+.feed-title-text {
+  position: relative;
+  display: inline-block;
+  font-size: 35rpx;
+  font-weight: 700;
+  color: #000000;
+  line-height: 48rpx;
+  z-index: 1;
+}
+
+.feed-title-text::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4rpx;
+  height: 10rpx;
+  background: #ffd16e;
+  z-index: -1;
+}
+
+.center {
+  text-align: center;
+  padding: 120rpx 0;
+}
+
+/* 动态列表:帖子间距 10px,底部留白给悬浮 tabBar */
+.feed {
+  margin-top: 38rpx;
+  padding-bottom: 220rpx;
+}
+
+.post {
+  margin-bottom: 38rpx;
+}
+
+.post-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.post-head-left {
+  display: flex;
+  align-items: center;
+  gap: 19rpx;
+  flex: 1;
+  min-width: 0;
+}
+
+.post-avatar {
+  width: 77rpx;
+  height: 77rpx;
+  border-radius: 50%;
+  background: #f1f1f1;
+  flex-shrink: 0;
+}
+
+.post-head-main {
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+  min-width: 0;
+}
+
+.post-name-row {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.post-name {
+  font-size: 27rpx;
+  font-weight: 500;
+  color: #000000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.post-gender {
+  width: 29rpx;
+  height: 29rpx;
+  flex-shrink: 0;
+}
+
+.post-date {
+  font-size: 21rpx;
+  color: #999999;
+}
+
+.post-head-right {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.post-heart {
+  width: 46rpx;
+  height: 46rpx;
+  padding: 10rpx;
+  margin: -10rpx;
+}
+
+.post-likes {
+  font-size: 23rpx;
+  color: #666666;
+  margin-left: 4rpx;
+}
+
+.post-more-icon {
+  width: 36rpx;
+  height: 36rpx;
+  margin-left: 16rpx;
+}
+
+.post-content {
+  margin-top: 19rpx;
+  font-size: 27rpx;
+  color: #333333;
+  line-height: 1.7;
+}
+
+/* 九宫格:110px 方块,间距 10px,一行 3 张(3x212 + 2x19 = 674rpx ≈ 350px) */
+.post-images {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 19rpx;
+  margin-right: -19rpx;
+}
+
+.post-img {
+  width: 212rpx;
+  height: 212rpx;
+  border-radius: 19rpx;
+  background: #f1f1f1;
+  margin: 0 19rpx 19rpx 0;
+}

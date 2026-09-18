@@ -1,0 +1,35 @@
+<view class="page">
+  <view class="page-title"><text class="title-text">{{catName}}的相册</text></view>
+
+  <view wx:if="{{loading}}" class="text-muted center">加载中...</view>
+
+  <block wx:else>
+    <view class="photo-grid">
+      <view
+        class="photo-box"
+        wx:for="{{photos}}"
+        wx:key="_id"
+        data-url="{{item.image_url}}"
+        data-index="{{index}}"
+        bindtap="onPhotoTap"
+      >
+        <image class="photo-img" src="{{item.image_url}}" mode="aspectFill" lazy-load="{{true}}" />
+        <!-- 浏览态:封面角标 -->
+        <view wx:if="{{!editing && item.image_url === coverImage}}" class="tag tag-cover">封面</view>
+        <!-- 编辑态:选择圈 -->
+        <view wx:else class="check {{item.checked ? 'check-on' : ''}}">{{item.checked ? '✓' : ''}}</view>
+      </view>
+      <view class="photo-add" wx:if="{{isAdmin && !editing && photos.length < 9}}" bindtap="onAddPhotos">+ 添加图片</view>
+    </view>
+  </block>
+
+  <!-- 底部操作(仅管理员) -->
+  <view wx:if="{{isAdmin && !editing}}" class="bottom-bar">
+    <view class="pill-btn" bindtap="onToggleEdit">编辑</view>
+    <view class="pill-btn" bindtap="onAddPhotos">添加照片</view>
+  </view>
+  <view wx:elif="{{isAdmin && editing}}" class="bottom-bar">
+    <view class="pill-btn" bindtap="onBatchDelete">删除</view>
+    <view class="pill-btn" bindtap="onSetCover">设为封面</view>
+  </view>
+</view>

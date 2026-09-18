@@ -1,0 +1,57 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/cats/index",
+    "pages/cat-detail/index",
+    "pages/adopt/index",
+    "pages/adopt-apply/index",
+    "pages/adopt-success/index",
+    "pages/about/index",
+    "pages/admin/index",
+    "pages/admin/cats/index",
+    "pages/admin/cat-edit/index",
+    "pages/admin/banners/index",
+    "pages/admin/banner-edit/index",
+    "pages/banner-detail/index",
+    "pages/cat-photos/index",
+    "pages/activity-publish/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "校园猫咪相册",
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#999999",
+    "selectedColor": "#f2963d",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页",
+        "iconPath": "images/tab-home.png",
+        "selectedIconPath": "images/tab-home-active.png"
+      },
+      {
+        "pagePath": "pages/cats/index",
+        "text": "猫咪档案",
+        "iconPath": "images/tab-cats.png",
+        "selectedIconPath": "images/tab-cats-active.png"
+      },
+      {
+        "pagePath": "pages/about/index",
+        "text": "关于我们",
+        "iconPath": "images/tab-about.png",
+        "selectedIconPath": "images/tab-about-active.png"
+      }
+    ]
+  },
+  "__usePrivacyCheck__": false,
+  "lazyCodeLoading": "requiredComponents",
+  "style": "v2",
+  "sitemapLocation": "../sitemap.json"
+}

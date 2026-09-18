@@ -1,0 +1,95 @@
+.page {
+  padding: 24rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.header {
+  padding: 32rpx 28rpx;
+}
+
+.header-title {
+  font-size: 36rpx;
+  font-weight: 700;
+}
+
+.header-sub {
+  margin-top: 10rpx;
+  font-size: 26rpx;
+  color: #f2963d;
+}
+
+.notice {
+  margin: 20rpx 4rpx;
+  font-size: 24rpx;
+  color: #b3541e;
+  line-height: 1.7;
+}
+
+.submitted-card {
+  margin-top: 24rpx;
+  padding: 80rpx 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.submitted-icon {
+  font-size: 80rpx;
+}
+
+.submitted-text {
+  margin-top: 24rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.submitted-sub {
+  margin-top: 12rpx;
+}
+
+.form-card {
+  margin-top: 24rpx;
+  padding: 12rpx 28rpx;
+}
+
+.form-item {
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #f2ede6;
+}
+.form-item:last-child {
+  border-bottom: none;
+}
+
+.form-label {
+  font-size: 28rpx;
+  font-weight: 500;
+  margin-bottom: 16rpx;
+}
+
+.required {
+  color: #e8604c;
+  margin-left: 6rpx;
+}
+
+.form-input {
+  background: #f7f5f2;
+  border-radius: 12rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+}
+
+.form-textarea {
+  background: #f7f5f2;
+  border-radius: 12rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  width: 100%;
+  box-sizing: border-box;
+  height: 180rpx;
+}
+
+.submit-btn {
+  margin-top: 48rpx;
+  text-align: center;
+}

@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "empty": "/components/empty/index",
+    "privacy-modal": "/components/privacy-modal/index"
+  }
+}

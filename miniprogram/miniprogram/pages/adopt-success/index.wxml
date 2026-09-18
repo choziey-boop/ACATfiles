@@ -1,0 +1,8 @@
+<view class="page">
+  <view class="success-icon">✅</view>
+  <view class="success-title">申请提交成功</view>
+  <view class="success-desc">您的申请已提交,管理员将在 3 个工作日内通过预留方式联系您。</view>
+
+  <view class="btn-primary action-btn" bindtap="onBackAdopt">继续看猫咪</view>
+  <view class="plain-btn" bindtap="onBackHome">回到首页</view>
+</view>

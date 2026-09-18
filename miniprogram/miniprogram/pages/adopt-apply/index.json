@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "领养申请",
+  "usingComponents": {
+    "privacy-modal": "/components/privacy-modal/index"
+  }
+}

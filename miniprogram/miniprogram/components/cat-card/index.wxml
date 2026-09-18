@@ -1,0 +1,22 @@
+<view class="cat-card card" bindtap="onTap">
+  <view class="cover-wrap">
+    <image
+      class="cover"
+      src="{{cat.avatar || cat.cover_image}}"
+      mode="aspectFill"
+      lazy-load="{{true}}"
+    />
+    <view wx:if="{{showUrgent && cat.urgent}}" class="badge badge-red urgent-badge">急寻领养</view>
+  </view>
+  <view class="info">
+    <view class="name-row">
+      <text class="name">{{cat.name}}</text>
+      <image wx:if="{{cat.gender === 'male'}}" class="gender-icon" src="/assets/male.svg" mode="aspectFit" />
+      <image wx:elif="{{cat.gender === 'female'}}" class="gender-icon" src="/assets/female.svg" mode="aspectFit" />
+    </view>
+    <view class="tags-row">
+      <view class="badge badge-green" wx:if="{{cat.is_neutered}}">已绝育</view>
+      <text class="area text-muted">{{cat.campus_area}}</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,54 @@
+.page {
+  min-height: 100vh;
+  padding-bottom: 180rpx;
+}
+
+.banner-image {
+  width: 100%;
+  display: block;
+  background: #f5f5f5;
+}
+
+.banner-title {
+  padding: 38rpx 40rpx 0;
+  font-size: 35rpx;
+  color: #1d2129;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.banner-content {
+  padding: 24rpx 40rpx;
+  font-size: 27rpx;
+  color: #1d2129;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* 底部操作:背景透明,按钮浮动 */
+.bottom-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  gap: 31rpx;
+  padding: 24rpx 40rpx calc(24rpx + env(safe-area-inset-bottom));
+}
+
+.pill-btn {
+  background: #fff4dd;
+  color: #ff8b26;
+  font-size: 31rpx;
+  font-weight: 600;
+  text-align: center;
+  padding: 23rpx 44rpx;
+  border-radius: 48rpx;
+}
+
+.center {
+  text-align: center;
+  padding: 120rpx 0;
+}

@@ -1,0 +1,130 @@
+.page {
+  background: #ffffff;
+  min-height: 100vh;
+  padding: 0 32rpx 60rpx;
+}
+
+.page-title {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #1d2129;
+  padding: 24rpx 0 24rpx;
+}
+
+/* 选择猫咪 */
+.cat-row {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+
+.cat-dot {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  background: #f1f1f1;
+  margin-right: 20rpx;
+}
+
+.cat-text {
+  flex: 1;
+  font-size: 30rpx;
+  color: #1d2129;
+}
+
+.cat-ph {
+  color: #c9cdd4;
+}
+
+.chevron {
+  font-size: 40rpx;
+  color: #c9cdd4;
+  line-height: 1;
+}
+
+/* 文字 */
+.content-input {
+  width: 100%;
+  box-sizing: border-box;
+  height: 260rpx;
+  padding: 24rpx 0;
+  font-size: 30rpx;
+  color: #1d2129;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+
+.ph {
+  color: #c9cdd4;
+}
+
+/* 图片 */
+.img-grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 24rpx;
+}
+
+.img-box {
+  position: relative;
+  width: 158rpx;
+  height: 158rpx;
+  margin: 0 16rpx 16rpx 0;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8rpx;
+  background: #f1f1f1;
+}
+
+.img-del {
+  position: absolute;
+  top: -12rpx;
+  right: -12rpx;
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  background: #e8604c;
+  color: #ffffff;
+  font-size: 26rpx;
+  line-height: 36rpx;
+  text-align: center;
+}
+
+.img-add {
+  width: 158rpx;
+  height: 158rpx;
+  margin-bottom: 16rpx;
+  border: 2rpx dashed #dddddd;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999999;
+  font-size: 22rpx;
+  box-sizing: border-box;
+}
+
+/* 发表按钮 */
+.save-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 60rpx;
+}
+
+.save-btn {
+  min-width: 300rpx;
+  background: #fff4dd;
+  color: #ff8b26;
+  font-size: 32rpx;
+  font-weight: 600;
+  text-align: center;
+  padding: 22rpx 46rpx;
+  border-radius: 50rpx;
+}
+
+.save-off {
+  opacity: 0.5;
+}

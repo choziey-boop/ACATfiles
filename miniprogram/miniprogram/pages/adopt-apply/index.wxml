@@ -1,0 +1,61 @@
+<privacy-modal />
+
+<view class="page">
+  <view class="header card">
+    <view class="header-title">领养申请</view>
+    <view class="header-sub" wx:if="{{catName}}">申请领养:{{catName}}</view>
+  </view>
+
+  <!-- 合规提示 -->
+  <view class="notice">
+    ⚠️ 本程序为非盈利校园公益项目,收集信息仅用于领养资格审核,不涉及任何费用。
+  </view>
+
+  <view wx:if="{{submitted}}" class="card submitted-card">
+    <view class="submitted-icon">📮</view>
+    <view class="submitted-text">您已提交过申请,请勿重复提交</view>
+    <view class="submitted-sub text-muted">管理员将在 3 个工作日内通过预留方式联系您</view>
+  </view>
+
+  <block wx:else>
+    <view class="card form-card">
+      <view class="form-item">
+        <view class="form-label">联系方式(手机号 / 微信 ID)<text class="required">*</text></view>
+        <input
+          class="form-input"
+          placeholder="请填写,便于管理员与您联系"
+          value="{{form.contact}}"
+          data-field="contact"
+          bindinput="onInput"
+        />
+      </view>
+      <view class="form-item">
+        <view class="form-label">领养原因<text class="required">*</text></view>
+        <textarea
+          class="form-textarea"
+          placeholder="简单说说为什么想领养这只猫咪"
+          value="{{form.reason}}"
+          data-field="reason"
+          bindinput="onInput"
+          maxlength="500"
+        />
+      </view>
+      <view class="form-item">
+        <view class="form-label">居住情况简介<text class="required">*</text></view>
+        <textarea
+          class="form-textarea"
+          placeholder="如:自有住房/合租、是否有防盗网、是否允许养宠等"
+          value="{{form.living}}"
+          data-field="living"
+          bindinput="onInput"
+          maxlength="500"
+        />
+      </view>
+    </view>
+
+    <view
+      class="btn-primary submit-btn {{submitting ? 'btn-disabled' : ''}}"
+      bindtap="onSubmit"
+    >{{submitting ? '提交中...' : '提交申请'}}</view>
+  </block>
+</view>

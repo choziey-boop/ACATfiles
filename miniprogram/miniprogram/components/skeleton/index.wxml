@@ -1,0 +1,9 @@
+<view class="skeleton-grid">
+  <view class="skeleton-card" wx:for="{{count}}" wx:key="index">
+    <view class="skeleton-img shimmer"></view>
+    <view class="skeleton-body">
+      <view class="skeleton-line shimmer" style="width: 60%"></view>
+      <view class="skeleton-line shimmer" style="width: 40%"></view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,9 @@
+{
+  "name": "myLikes",
+  "version": "1.0.0",
+  "description": "批量查询当前用户点赞状态",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

@@ -1,0 +1,38 @@
+<view class="page">
+  <view class="page-title">动态</view>
+
+  <!-- 选择猫咪 -->
+  <picker range="{{catNames}}" value="{{catIndex}}" bindchange="onCatChange" disabled="{{!!id}}">
+    <view class="cat-row">
+      <view class="cat-dot"></view>
+      <text class="cat-text {{catIndex < 0 && !catName ? 'cat-ph' : ''}}">{{catIndex >= 0 ? catNames[catIndex] : (catName || '请选择猫咪')}}</text>
+      <text wx:if="{{!id}}" class="chevron">›</text>
+    </view>
+  </picker>
+
+  <!-- 文字 -->
+  <textarea
+    class="content-input"
+    placeholder="这一刻的想法"
+    placeholder-class="ph"
+    value="{{content}}"
+    bindinput="onInputContent"
+    maxlength="1000"
+  />
+
+  <!-- 图片 -->
+  <view class="img-grid">
+    <view class="img-box" wx:for="{{images}}" wx:key="*this">
+      <image class="img" src="{{item}}" mode="aspectFill" />
+      <view class="img-del" data-index="{{index}}" catchtap="onDelImage">×</view>
+    </view>
+    <view class="img-add" wx:if="{{images.length < 9}}" bindtap="onAddImages">+ 添加图片</view>
+  </view>
+
+  <!-- 发表 -->
+  <view class="save-wrap">
+    <view class="save-btn {{saving || uploading ? 'save-off' : ''}}" bindtap="onSubmit">
+      {{saving ? '提交中...' : (id ? '保存' : '发表')}}
+    </view>
+  </view>
+</view>

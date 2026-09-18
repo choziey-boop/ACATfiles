@@ -1,0 +1,73 @@
+/* 全局样式:暖橙色主题 */
+page {
+  background: #ffffff;
+  font-size: 28rpx;
+  color: #333333;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+}
+
+.container {
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+
+/* 主按钮 */
+.btn-primary {
+  background: #f2963d;
+  color: #ffffff;
+  border-radius: 48rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  border: none;
+  line-height: 88rpx;
+  height: 88rpx;
+}
+.btn-primary::after {
+  border: none;
+}
+.btn-primary.btn-disabled {
+  background: #d8d8d8;
+  color: #ffffff;
+}
+
+/* 卡片 */
+.card {
+  background: #ffffff;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+/* 文本层级 */
+.text-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #333333;
+}
+.text-sub {
+  font-size: 26rpx;
+  color: #888888;
+}
+.text-muted {
+  font-size: 24rpx;
+  color: #aaaaaa;
+}
+
+/* 角标 */
+.badge {
+  display: inline-block;
+  padding: 4rpx 14rpx;
+  border-radius: 8rpx;
+  font-size: 20rpx;
+  line-height: 1.6;
+  color: #ffffff;
+}
+.badge-green {
+  background: #5ab97c;
+}
+.badge-red {
+  background: #e8604c;
+}
+.badge-orange {
+  background: #f2963d;
+}

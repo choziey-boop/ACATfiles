@@ -1,0 +1,178 @@
+.page {
+  min-height: 100vh;
+  padding-bottom: 180rpx;
+}
+
+/* 标题:24px 粗体 + 黄色下划线 */
+.page-title {
+  position: relative;
+  display: inline-block;
+  font-size: 46rpx;
+  font-weight: 700;
+  color: #1d2129;
+  padding: 30rpx 40rpx 16rpx;
+  z-index: 1;
+}
+
+.page-title::after {
+  content: '';
+  position: absolute;
+  left: 40rpx;
+  right: 40rpx;
+  bottom: 8rpx;
+  height: 10rpx;
+  background: #ffd16e;
+  z-index: -1;
+}
+
+/* 搜索框 */
+.search-box {
+  display: flex;
+  align-items: center;
+  background: #f3f4f5;
+  border-radius: 100rpx;
+  margin: 12rpx 40rpx;
+  padding: 0 24rpx;
+  height: 62rpx;
+}
+
+.search-icon {
+  width: 46rpx;
+  height: 46rpx;
+  margin-right: 12rpx;
+  flex-shrink: 0;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 27rpx;
+}
+
+.search-ph {
+  color: #cccccc;
+}
+
+.search-clear {
+  font-size: 36rpx;
+  color: #c9cdd4;
+  padding: 0 8rpx;
+}
+
+/* 筛选 chips */
+.chips {
+  white-space: nowrap;
+  padding: 12rpx 40rpx 24rpx;
+  box-sizing: border-box;
+}
+
+.chip {
+  display: inline-block;
+  padding: 6rpx 13rpx;
+  margin-right: 19rpx;
+  border-radius: 12rpx;
+  background: #efefef;
+  color: #1d2129;
+  font-size: 23rpx;
+  font-weight: 500;
+}
+
+.chip-on {
+  background: #ffedc9;
+  color: #b36000;
+}
+
+/* card 式列表 */
+.cat-list {
+  padding: 0 40rpx;
+}
+
+.cat-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fafafa;
+  border-radius: 19rpx;
+  padding: 31rpx;
+  margin-bottom: 19rpx;
+}
+
+.cat-left {
+  display: flex;
+  align-items: center;
+  gap: 19rpx;
+  flex: 1;
+  min-width: 0;
+}
+
+.cat-avatar {
+  width: 85rpx;
+  height: 85rpx;
+  border-radius: 50%;
+  background: #f1f1f1;
+  flex-shrink: 0;
+}
+
+.cat-main {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  min-width: 0;
+}
+
+.cat-name {
+  font-size: 31rpx;
+  font-weight: 500;
+  color: #1d2129;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gender-icon {
+  width: 29rpx;
+  height: 29rpx;
+  flex-shrink: 0;
+}
+
+/* 操作按钮 */
+.cat-actions {
+  display: flex;
+  gap: 10rpx;
+  flex-shrink: 0;
+}
+
+.action-btn {
+  background: #f0f7fd;
+  color: #0078e9;
+  font-size: 23rpx;
+  font-weight: 500;
+  padding: 10rpx 19rpx;
+  border-radius: 10rpx;
+}
+
+/* 底部操作按钮:背景透明,按钮浮动 */
+.bottom-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  gap: 31rpx;
+  padding: 24rpx 40rpx calc(24rpx + env(safe-area-inset-bottom));
+}
+
+.pill-btn {
+  background: #fff4dd;
+  color: #ff8b26;
+  font-size: 31rpx;
+  font-weight: 600;
+  text-align: center;
+  padding: 23rpx 44rpx;
+  border-radius: 48rpx;
+}
+
+.center {
+  text-align: center;
+  padding: 120rpx 0;
+}

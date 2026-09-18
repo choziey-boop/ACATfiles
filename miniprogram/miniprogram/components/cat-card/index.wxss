@@ -1,0 +1,53 @@
+.cat-card {
+  margin-bottom: 24rpx;
+}
+
+.cover-wrap {
+  position: relative;
+  width: 100%;
+  height: 340rpx;
+  background: #eee7dd;
+}
+
+.cover {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.urgent-badge {
+  position: absolute;
+  top: 16rpx;
+  left: 16rpx;
+}
+
+.info {
+  padding: 16rpx 20rpx 20rpx;
+}
+
+.name-row {
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.gender-icon {
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 10rpx;
+}
+
+.tags-row {
+  margin-top: 10rpx;
+  display: flex;
+  align-items: center;
+}
+
+.area {
+  margin-left: 12rpx;
+}

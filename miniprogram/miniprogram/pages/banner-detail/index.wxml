@@ -1,0 +1,28 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="text-muted center">加载中...</view>
+
+  <block wx:elif="{{banner}}">
+    <!-- 大图 -->
+    <image
+      class="banner-image"
+      src="{{banner.image_url}}"
+      mode="widthFix"
+      lazy-load="{{true}}"
+      bindtap="onPreviewImage"
+    />
+
+    <!-- 标题 -->
+    <view wx:if="{{banner.title}}" class="banner-title">{{banner.title}}</view>
+
+    <!-- 正文 -->
+    <view wx:if="{{banner.content}}" class="banner-content">{{banner.content}}</view>
+
+    <!-- 管理员操作(仅从管理后台进入时显示) -->
+    <view wx:if="{{adminMode && isAdmin}}" class="bottom-bar">
+      <view class="pill-btn" bindtap="onDelete">删除</view>
+      <view class="pill-btn" bindtap="onEdit">编辑</view>
+    </view>
+  </block>
+
+  <empty wx:else text="轮播图不存在或已删除" />
+</view>

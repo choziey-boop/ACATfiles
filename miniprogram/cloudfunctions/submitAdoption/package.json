@@ -1,0 +1,9 @@
+{
+  "name": "submitAdoption",
+  "version": "1.0.0",
+  "description": "领养申请查重与提交(联系方式加密存储)",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

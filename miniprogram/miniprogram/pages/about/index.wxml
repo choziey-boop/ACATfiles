@@ -1,0 +1,37 @@
+<privacy-modal />
+
+<view class="page">
+  <!-- 固定背景:渐变 + 顶部纹理 + 右侧装饰 -->
+  <view class="main-bg">
+    <image class="bg-texture" src="/images/about_texture.png" mode="widthFix" />
+    <image class="bg-deco" src="/assets/about-deco.svg" mode="aspectFit" />
+  </view>
+
+  <!-- 滚动区:顶边对齐胶囊下边缘(行内注入),背景固定露出 -->
+  <scroll-view class="page-scroll" scroll-y enhanced show-scrollbar="{{false}}" style="top: {{scrollTop}}px;">
+    <view class="title-gap"></view>
+
+    <!-- 标题 + 橙色圆徽 -->
+    <view class="head-row">
+      <view class="page-title">关于我们</view>
+      <view class="logo-badge">
+        <image class="logo-img" src="/images/about_logo.jpg" mode="aspectFit" />
+      </view>
+    </view>
+
+    <!-- 内容白卡:圆角 20px,压住背景下缘 -->
+    <view class="content-card">
+      <view class="about-text">
+        <text class="para">上海外国语大学喵喵外院成立于2020年，是由上外师生发起、学生自主运营的非营利性志愿组织。协会致力于科学改善校园内流浪猫的生活，通过TNR（抓捕—绝育—放归）、送养、日常喂养、伤病救助等方式，和平减少校园流浪猫数量，协调人猫关系，营造良好的校园环境。</text>
+        <text class="para">目前，校内共有80+只流浪猫，其中10余只需长期重点照料。我们积极践行TNR理念，持续推进绝育工作，已完成校内常驻成年猫绝育，母猫及成年公猫绝育率95%，累计绝育100+只；坚持合理喂粮、科学喂养，累计帮助40+只猫咪进入领养家庭，签署正规领养协议并持续回访。日常中，我们定期为校内亲人流浪猫开展驱虫护理，及时为患病猫咪就医治疗。我们还曾带着校园小猫登上电视，宣传TNR与科学救助理念。</text>
+        <text class="para">目前协会资金主要用于校园流浪猫的绝育、医疗、日常猫粮和必要物资。流浪猫生活不易，常有小猫因为生病、受伤进医院，医药费、绝育费对学生团队来说是不小的开支。若无救助管理，人类遗弃所致的流浪动物会对城市生态环境产生负面影响。为了我们共同的家园，请大家不在任何地方遗弃宠物，支持科学救助，用领养代替购买。流浪不是猫的归宿，上外也不是流浪猫的天堂。请与我们一起，用绝育、领养和关爱，让校园更温柔。</text>
+      </view>
+
+      <!-- 管理入口:仅管理员可见 -->
+      <view wx:if="{{isAdmin}}" class="admin-entry" bindtap="onGoAdmin">进入管理后台</view>
+    </view>
+
+    <!-- 隐藏初始化入口:1 秒内连点 7 次触发 -->
+    <view class="footer text-muted" bindtap="onFooterTap">非盈利校园公益项目 · 不涉及任何费用</view>
+  </scroll-view>
+</view>
