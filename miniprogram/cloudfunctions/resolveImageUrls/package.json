@@ -1,0 +1,9 @@
+{
+  "name": "resolveImageUrls",
+  "version": "1.0.0",
+  "description": "批量换取云存储临时公开链接(图片展示中转)",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

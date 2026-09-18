@@ -1,6 +1,7 @@
 // 猫咪档案:全量拉取后客户端筛选/排序;支持列表/网格视图切换、点赞、排序切换
 // 排序:默认最新登记(created_at 倒序),可切换为按热度(likes 倒序)
 const { callFunction } = require('../../utils/cloud');
+const { resolveImageUrls } = require('../../utils/image-url');
 
 const CHIPS = [
   { key: 'all', label: '全部' },
@@ -119,6 +120,17 @@ Page({
         this.setData({ allCats: cats, total }, () => {
           this.applyFilter();
           this.loadLikedStates();
+        });
+        // 封面/头像换公开临时链接(普通用户无云存储读权限,云函数中转)
+        const ids = cats.reduce((acc, c) => acc.concat([c.avatar, c.cover_image]), []);
+        resolveImageUrls(ids).then((map) => {
+          if (Object.keys(map).length === 0) return;
+          const pick = (u) => map[u] || u;
+          const mapCat = (c) => ({ ...c, avatar: pick(c.avatar), cover_image: pick(c.cover_image) });
+          this.setData({
+            allCats: this.data.allCats.map(mapCat),
+            cats: this.data.cats.map(mapCat)
+          });
         });
       })
       .catch((err) => {

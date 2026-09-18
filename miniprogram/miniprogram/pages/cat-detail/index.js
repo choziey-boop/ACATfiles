@@ -1,6 +1,7 @@
 const { CAT_STATUS, GENDER } = require('../../utils/constants');
 const { ageText } = require('../../utils/format');
 const { callFunction } = require('../../utils/cloud');
+const { resolveImageUrls } = require('../../utils/image-url');
 const { isAdmin } = require('../../utils/admin');
 
 function formatDate(value) {
@@ -84,6 +85,17 @@ Page({
           albumPreview: albumUrls.slice(0, 4),
           loading: false
         });
+        // 大图/相册换公开临时链接(普通用户无云存储读权限,云函数中转)
+        const ids = [cat.cover_image].concat(albumUrls);
+        resolveImageUrls(ids).then((map) => {
+          if (Object.keys(map).length === 0) return;
+          const pick = (u) => map[u] || u;
+          this.setData({
+            mainImages: this.data.mainImages.map(pick),
+            images: this.data.images.map(pick),
+            albumPreview: this.data.albumPreview.map(pick)
+          });
+        });
         this.updateTotalLikes();
         // 当前用户是否已赞
         callFunction('myLikes', { targetType: 'cat', targetIds: [id] })
@@ -119,6 +131,15 @@ Page({
         // 动态点赞合计,计入头部爱心数
         this.setData({ activityLikes: activities.reduce((sum, a) => sum + (a.likes || 0), 0) });
         this.updateTotalLikes();
+        // 动态图片换公开临时链接
+        const imgIds = activities.reduce((acc, a) => acc.concat(a.images || []), []);
+        resolveImageUrls(imgIds).then((map) => {
+          if (Object.keys(map).length === 0) return;
+          const pick = (u) => map[u] || u;
+          this.setData({
+            activities: this.data.activities.map((a) => ({ ...a, images: (a.images || []).map(pick) }))
+          });
+        });
         if (activities.length === 0) return;
         callFunction('myLikes', { targetType: 'activity', targetIds: activities.map((a) => a._id) })
           .then((data) => {

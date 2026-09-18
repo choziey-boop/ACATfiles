@@ -1,5 +1,6 @@
 // 猫咪相册页:所有人可看(点图预览);管理员额外可编辑(删除/设封面/首页轮播/添加)
 const { callFunction } = require('../../utils/cloud');
+const { resolveImageUrls } = require('../../utils/image-url');
 const { uploadImage } = require('../../utils/upload');
 const { isAdmin } = require('../../utils/admin');
 
@@ -58,6 +59,19 @@ Page({
             return (a.sort || 0) - (b.sort || 0);
           });
         this.setData({ coverImage: cover, catCode: catRes.data.code || '', photos, loading: false, selectedCount: 0, editing: false });
+        // 换公开链接仅用于展示;image_url 始终保留原始 cloud://,供管理员删除/设封面匹配
+        const ids = photos.map((p) => p.image_url).concat([cover]);
+        resolveImageUrls(ids).then((map) => {
+          if (Object.keys(map).length === 0) return;
+          const coverDisplay = map[cover] || cover;
+          this.setData({
+            coverImage: coverDisplay,
+            photos: this.data.photos.map((p) => {
+              const display = map[p.image_url] || p.image_url;
+              return { ...p, display, isCover: !!coverDisplay && display === coverDisplay };
+            })
+          });
+        });
       })
       .catch((err) => {
         console.error('加载相册失败', err);
@@ -81,7 +95,7 @@ Page({
   onPhotoTap(e) {
     const { url, index } = e.currentTarget.dataset;
     if (!this.data.isAdmin || !this.data.editing) {
-      wx.previewImage({ urls: this.data.photos.map((p) => p.image_url), current: url });
+      wx.previewImage({ urls: this.data.photos.map((p) => p.display || p.image_url), current: url });
       return;
     }
     const checked = !this.data.photos[index].checked;

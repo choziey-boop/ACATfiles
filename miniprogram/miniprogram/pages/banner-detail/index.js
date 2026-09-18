@@ -1,5 +1,6 @@
 // 轮播图文详情页:普通用户只读文章;管理员(admin=1)额外显示 删除/编辑 按钮
 const { callFunction } = require('../../utils/cloud');
+const { resolveImageUrls } = require('../../utils/image-url');
 const { isAdmin } = require('../../utils/admin');
 
 Page({
@@ -34,6 +35,11 @@ Page({
         const b = res.data || {};
         wx.setNavigationBarTitle({ title: b.title || '详情' });
         this.setData({ banner: b, loading: false });
+        // 换公开临时链接(普通用户无云存储读权限,云函数中转)
+        resolveImageUrls([b.image_url]).then((map) => {
+          if (!map[b.image_url]) return;
+          this.setData({ banner: { ...this.data.banner, image_url: map[b.image_url] } });
+        });
       })
       .catch((err) => {
         console.error('加载轮播图失败', err);

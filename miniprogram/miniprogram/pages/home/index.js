@@ -1,5 +1,6 @@
 const { callFunction } = require('../../utils/cloud');
 const { isAdmin } = require('../../utils/admin');
+const { resolveImageUrls } = require('../../utils/image-url');
 
 function formatDate(value) {
   if (!value) return '';
@@ -79,25 +80,39 @@ Page({
           likes: a.likes || 0,
           liked: false
         }));
-        // 拆分:home_banner 最多 5 张;home_top 最多 3 张(无 type 视为 home_banner)
+        // 拆分:home_banner 最多 5 张;home_top 最多 10 张(无 type 视为 home_banner)
         const all = bannerRes.data || [];
-        this.setData({
-          banners: all.filter((b) => (b.type || 'home_banner') === 'home_banner').slice(0, 5),
-          topImages: all.filter((b) => b.type === 'home_top').slice(0, 10),
-          activities,
-          loading: false
+        const banners = all.filter((b) => (b.type || 'home_banner') === 'home_banner').slice(0, 5);
+        const topImages = all.filter((b) => b.type === 'home_top').slice(0, 10);
+        // 图片统一换公开临时链接(普通用户无云存储读权限,云函数中转)
+        const ids = banners
+          .map((b) => b.image_url)
+          .concat(topImages.map((b) => b.image_url))
+          .concat(activities.reduce((acc, a) => acc.concat(a.images || []), []));
+        return resolveImageUrls(ids).then((map) => {
+          const pick = (u) => map[u] || u;
+          const resolvedActivities = activities.map((a) => ({
+            ...a,
+            images: (a.images || []).map(pick)
+          }));
+          this.setData({
+            banners: banners.map((b) => ({ ...b, image_url: pick(b.image_url) })),
+            topImages: topImages.map((b) => ({ ...b, image_url: pick(b.image_url) })),
+            activities: resolvedActivities,
+            loading: false
+          });
+          this.pickTopImage();
+          if (resolvedActivities.length === 0) return;
+          this.fillGenderMap(resolvedActivities);
+          callFunction('myLikes', { targetType: 'activity', targetIds: resolvedActivities.map((a) => a._id) })
+            .then((data) => {
+              const likedSet = new Set(data.likedIds || []);
+              this.setData({
+                activities: this.data.activities.map((a) => ({ ...a, liked: likedSet.has(a._id) }))
+              });
+            })
+            .catch(() => {});
         });
-        this.pickTopImage();
-        if (activities.length === 0) return;
-        this.fillGenderMap(activities);
-        callFunction('myLikes', { targetType: 'activity', targetIds: activities.map((a) => a._id) })
-          .then((data) => {
-            const likedSet = new Set(data.likedIds || []);
-            this.setData({
-              activities: this.data.activities.map((a) => ({ ...a, liked: likedSet.has(a._id) }))
-            });
-          })
-          .catch(() => {});
       })
       .catch((err) => {
         console.error('加载首页数据失败', err);

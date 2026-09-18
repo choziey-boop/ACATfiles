@@ -9,13 +9,13 @@
         class="photo-box"
         wx:for="{{photos}}"
         wx:key="_id"
-        data-url="{{item.image_url}}"
+        data-url="{{item.display || item.image_url}}"
         data-index="{{index}}"
         bindtap="onPhotoTap"
       >
-        <image class="photo-img" src="{{item.image_url}}" mode="aspectFill" lazy-load="{{true}}" />
+        <image class="photo-img" src="{{item.display || item.image_url}}" mode="aspectFill" lazy-load="{{true}}" />
         <!-- 浏览态:封面角标 -->
-        <view wx:if="{{!editing && item.image_url === coverImage}}" class="tag tag-cover">封面</view>
+        <view wx:if="{{!editing && item.isCover}}" class="tag tag-cover">封面</view>
         <!-- 编辑态:选择圈 -->
         <view wx:else class="check {{item.checked ? 'check-on' : ''}}">{{item.checked ? '✓' : ''}}</view>
       </view>
