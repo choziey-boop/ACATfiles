@@ -1,4 +1,4 @@
 {
   "navigationBarTitleText": "编辑猫咪",
-  "usingComponents": {}
+  "usingComponents": { "privacy-modal": "/components/privacy-modal/index" }
 }

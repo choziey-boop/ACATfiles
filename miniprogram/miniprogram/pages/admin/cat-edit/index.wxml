@@ -1,3 +1,5 @@
+<privacy-modal />
+
 <view class="page">
   <!-- 名字 -->
   <view class="item">

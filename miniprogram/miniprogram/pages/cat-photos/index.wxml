@@ -1,3 +1,5 @@
+<privacy-modal />
+
 <view class="page">
   <view class="page-title"><text class="title-text">{{catName}}的相册</text></view>
 

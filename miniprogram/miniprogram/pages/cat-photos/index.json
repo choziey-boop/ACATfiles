@@ -1,4 +1,4 @@
 {
   "navigationBarTitleText": "相册",
-  "usingComponents": {}
+  "usingComponents": { "privacy-modal": "/components/privacy-modal/index" }
 }

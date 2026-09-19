@@ -1,4 +1,4 @@
 {
   "navigationBarTitleText": "发动态",
-  "usingComponents": {}
+  "usingComponents": { "privacy-modal": "/components/privacy-modal/index" }
 }

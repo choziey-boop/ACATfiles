@@ -1,3 +1,5 @@
+<privacy-modal />
+
 <view class="page">
   <view class="page-title">动态</view>
 
