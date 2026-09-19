@@ -38,6 +38,8 @@ Component({
 
     onDisagree() {
       this.setData({ visible: false });
+      // 放行被拦截的隐私接口(chooseMedia 等),使其以失败结束
+      getApp().onPrivacyDisagreed();
       wx.showToast({
         title: '部分功能需要同意隐私指引后才能使用',
         icon: 'none'
