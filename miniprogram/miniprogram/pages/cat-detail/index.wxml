@@ -31,6 +31,8 @@
       />
     </swiper-item>
   </swiper>
+  <!-- 无头图时占位背景(与 swiper 同尺寸) -->
+  <view wx:else class="main-swiper main-swiper-placeholder" />
 
   <!-- 内容卡:白卡圆角 25px,上压头图 -->
   <view class="card">
@@ -165,6 +167,12 @@
         </view>
       </view>
     </block>
+
+    <!-- 既无相册也无动态时:空状态占位,避免大片空白 -->
+    <view wx:if="{{images.length === 0 && activities.length === 0}}" class="detail-empty">
+      <text class="detail-empty-text">这只猫咪还没有照片和动态</text>
+      <text class="detail-empty-sub">管理员可以在相册页添加照片</text>
+    </view>
   </view>
 
   <!-- 领养入口:仅待领养状态显示,居中胶囊按钮 -->
