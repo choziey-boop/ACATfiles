@@ -170,8 +170,7 @@
 
     <!-- 既无相册也无动态时:空状态占位,避免大片空白 -->
     <view wx:if="{{images.length === 0 && activities.length === 0}}" class="detail-empty">
-      <text class="detail-empty-text">这只猫咪还没有照片和动态</text>
-      <text class="detail-empty-sub">管理员可以在相册页添加照片</text>
+      <text class="detail-empty-text">暂无照片和动态</text>
     </view>
   </view>
 
