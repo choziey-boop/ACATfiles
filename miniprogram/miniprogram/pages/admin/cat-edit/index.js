@@ -5,7 +5,7 @@ const { uploadImage } = require('../../../utils/upload');
 const GENDER_OPTIONS = ['male', 'female', 'unknown'];
 const GENDER_TEXTS = ['公', '母', '未知'];
 const STATUS_OPTIONS = ['available', 'adopted', 'graduated', 'missing'];
-const STATUS_TEXTS = ['待领养', '已领养', '回喵星'];
+const STATUS_TEXTS = ['待领养', '已领养', '回喵星', '已失踪'];
 const MAX_PHOTOS = 9;
 
 function formatDate(d) {

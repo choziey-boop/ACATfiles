@@ -2,7 +2,7 @@
 const CAT_STATUS = {
   available: '待领养',
   adopted: '已领养',
-  missing: '失踪',
+  missing: '已失踪',
   checking: '审核中',
   graduated: '回喵星'
 };

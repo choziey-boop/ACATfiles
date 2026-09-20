@@ -8,6 +8,7 @@ const CHIPS = [
   { key: 'male', label: '公猫' },
   { key: 'female', label: '母猫' },
   { key: 'adopted', label: '已领养' },
+  { key: 'missing', label: '已失踪' },
   { key: 'neutered', label: '已绝育' },
   { key: 'graduated', label: '回喵星' }
 ];
@@ -75,6 +76,8 @@ Page({
       cats = cats.filter((c) => c.gender === activeChip);
     } else if (activeChip === 'adopted') {
       cats = cats.filter((c) => c.status === 'adopted');
+    } else if (activeChip === 'missing') {
+      cats = cats.filter((c) => c.status === 'missing');
     } else if (activeChip === 'graduated') {
       cats = cats.filter((c) => c.status === 'graduated');
     } else if (activeChip === 'neutered') {
