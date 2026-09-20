@@ -1,6 +1,7 @@
 // 轮播图新增/编辑页(仅管理员)
 const { callFunction } = require('../../../utils/cloud');
 const { isAdmin } = require('../../../utils/admin');
+const { chooseImages } = require('../../../utils/choose-image');
 const { uploadImage, uploadImageRaw } = require('../../../utils/upload');
 
 Page({
@@ -56,12 +57,10 @@ Page({
     if (this.data.uploading) return;
     // 顶图用原图(不压缩不缩放);轮播图用压缩图省流量
     const isTop = this.data.type === 'home_top';
-    wx.chooseMedia({
-      count: 1,
-      mediaType: ['image'],
-      sizeType: [isTop ? 'original' : 'compressed'],
-      success: (res) => {
-        const filePath = res.tempFiles[0].tempFilePath;
+    chooseImages({ count: 1, sizeType: [isTop ? 'original' : 'compressed'] })
+      .then((paths) => {
+        if (!paths.length) return;
+        const filePath = paths[0];
         this.setData({ uploading: true, uploadingText: '上传中...' });
         (isTop ? uploadImageRaw(filePath, 'banner-images') : uploadImage(filePath, 'banner-images'))
           .then((fileID) => {
@@ -77,8 +76,12 @@ Page({
             wx.showToast({ title: '上传失败', icon: 'none' });
           })
           .finally(() => this.setData({ uploading: false }));
-      }
-    });
+      })
+      .catch((err) => {
+        if (err.errMsg && err.errMsg.includes('cancel')) return;
+        console.error('chooseMedia 调用失败', err);
+        wx.showToast({ title: '无法打开相册: ' + (err.errMsg || '未知错误'), icon: 'none' });
+      });
   },
 
   onTitleInput(e) {

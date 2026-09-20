@@ -1,5 +1,6 @@
 // 发布/编辑动态(仅管理员):选猫 + 文字 + 图片(最多 9 张)
 const { callFunction } = require('../../utils/cloud');
+const { chooseImages } = require('../../utils/choose-image');
 const { uploadImage } = require('../../utils/upload');
 
 const MAX_IMAGES = 9;
@@ -98,12 +99,9 @@ Page({
     if (this.data.uploading) return;
     const remain = MAX_IMAGES - this.data.images.length;
     if (remain <= 0) return;
-    wx.chooseMedia({
-      count: remain,
-      mediaType: ['image'],
-      sizeType: ['compressed'],
-      success: (res) => {
-        const files = res.tempFiles.map((f) => f.tempFilePath).slice(0, remain);
+    chooseImages({ count: remain, sizeType: ['compressed'] })
+      .then((files) => {
+        if (!files.length) return;
         this.setData({ uploading: true });
         wx.showLoading({ title: '上传中...', mask: true });
         // 按月分文件夹,如 activity-images/202609/
@@ -121,13 +119,12 @@ Page({
             this.setData({ uploading: false });
             wx.hideLoading();
           });
-      },
-      fail: (err) => {
+      })
+      .catch((err) => {
         if (err.errMsg && err.errMsg.includes('cancel')) return;
         console.error('chooseMedia 调用失败', err);
         wx.showToast({ title: '无法打开相册: ' + (err.errMsg || '未知错误'), icon: 'none' });
-      }
-    });
+      });
   },
 
   onDelImage(e) {

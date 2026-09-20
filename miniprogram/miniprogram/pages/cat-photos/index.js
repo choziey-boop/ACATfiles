@@ -1,6 +1,7 @@
 // 猫咪相册页:所有人可看(点图预览);管理员额外可编辑(删除/设封面/首页轮播/添加)
 const { callFunction } = require('../../utils/cloud');
 const { resolveImageUrls } = require('../../utils/image-url');
+const { chooseImages } = require('../../utils/choose-image');
 const { uploadImage } = require('../../utils/upload');
 const { isAdmin } = require('../../utils/admin');
 
@@ -113,12 +114,9 @@ Page({
       wx.showToast({ title: `最多 ${MAX_PHOTOS} 张`, icon: 'none' });
       return;
     }
-    wx.chooseMedia({
-      count: remain,
-      mediaType: ['image'],
-      sizeType: ['compressed'],
-      success: (res) => {
-        const files = res.tempFiles.map((f) => f.tempFilePath).slice(0, remain);
+    chooseImages({ count: remain, sizeType: ['compressed'] })
+      .then((files) => {
+        if (!files.length) return;
         this.setData({ uploading: true });
         wx.showLoading({ title: '上传中...', mask: true });
         Promise.all(files.map((f) => uploadImage(f, `cat-images/${this.data.catCode || 'unknown'}`)))
@@ -134,13 +132,12 @@ Page({
             this.setData({ uploading: false });
             wx.hideLoading();
           });
-      },
-      fail: (err) => {
+      })
+      .catch((err) => {
         if (err.errMsg && err.errMsg.includes('cancel')) return;
         console.error('chooseMedia 调用失败', err);
         wx.showToast({ title: '无法打开相册: ' + (err.errMsg || '未知错误'), icon: 'none' });
-      }
-    });
+      });
   },
 
   // 批量删除

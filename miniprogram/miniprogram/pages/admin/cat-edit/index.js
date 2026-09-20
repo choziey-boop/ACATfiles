@@ -1,6 +1,7 @@
 const { callFunction } = require('../../../utils/cloud');
 const { ageText } = require('../../../utils/format');
 const { uploadImage } = require('../../../utils/upload');
+const { chooseImages } = require('../../../utils/choose-image');
 
 const GENDER_OPTIONS = ['male', 'female', 'unknown'];
 const GENDER_TEXTS = ['公', '母', '未知'];
@@ -215,12 +216,10 @@ Page({
 
   onChooseAvatar() {
     if (this.data.uploading) return;
-    wx.chooseMedia({
-      count: 1,
-      mediaType: ['image'],
-      sizeType: ['compressed'],
-      success: (res) => {
-        const filePath = res.tempFiles[0].tempFilePath;
+    chooseImages({ count: 1, sizeType: ['compressed'] })
+      .then((paths) => {
+        if (!paths.length) return;
+        const filePath = paths[0];
         let watchdog = null;
         // 先裁剪(1:1,仅真机),再缩放到 900x900,最后上传
         // 裁剪是用户操作,不计入超时;超时只包住上传阶段
@@ -248,13 +247,12 @@ Page({
             this.setData({ uploading: false });
             wx.hideLoading();
           });
-      },
-      fail: (err) => {
+      })
+      .catch((err) => {
         if (err.errMsg && err.errMsg.includes('cancel')) return; // 用户主动取消,不提示
         console.error('chooseMedia 调用失败', err);
         wx.showToast({ title: '无法打开相册: ' + (err.errMsg || '未知错误'), icon: 'none' });
-      }
-    });
+      });
   },
 
   // 照片:多选追加(不逐张裁剪,统一压缩上传,展示端 aspectFill)
@@ -262,12 +260,9 @@ Page({
     if (this.data.uploading) return;
     const remain = MAX_PHOTOS - this.data.photos.length;
     if (remain <= 0) return;
-    wx.chooseMedia({
-      count: remain,
-      mediaType: ['image'],
-      sizeType: ['compressed'],
-      success: (res) => {
-        const files = res.tempFiles.map((f) => f.tempFilePath).slice(0, remain);
+    chooseImages({ count: remain, sizeType: ['compressed'] })
+      .then((files) => {
+        if (!files.length) return;
         this.setData({ uploading: true });
         wx.showLoading({ title: '上传中...', mask: true });
         Promise.all(files.map((f) => this.uploadOne(f)))
@@ -282,13 +277,12 @@ Page({
             this.setData({ uploading: false });
             wx.hideLoading();
           });
-      },
-      fail: (err) => {
+      })
+      .catch((err) => {
         if (err.errMsg && err.errMsg.includes('cancel')) return;
         console.error('chooseMedia 调用失败', err);
         wx.showToast({ title: '无法打开相册: ' + (err.errMsg || '未知错误'), icon: 'none' });
-      }
-    });
+      });
   },
 
   // 点击照片:设为封面(移到第一位)/预览
