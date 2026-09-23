@@ -97,6 +97,25 @@
   color: #000000;
 }
 
+/* 分享按钮:与浏览/点赞同级 */
+.share-btn {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 8rpx 0;
+}
+
+.share-icon {
+  width: 46rpx;
+  height: 46rpx;
+}
+
+.share-text {
+  font-size: 23rpx;
+  font-weight: 500;
+  color: #000000;
+}
+
 /* 档案信息:两列卡片,行距 20px(38rpx) */
 .info {
   margin-top: 19rpx;

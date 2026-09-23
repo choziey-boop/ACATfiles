@@ -2,6 +2,8 @@
   "navigationStyle": "custom",
   "usingComponents": {
     "empty": "/components/empty/index",
-    "privacy-modal": "/components/privacy-modal/index"
+    "privacy-modal": "/components/privacy-modal/index",
+    "share-popup": "/components/share-popup/index",
+    "poster-canvas": "/components/poster-canvas/index"
   }
 }

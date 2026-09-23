@@ -223,5 +223,23 @@ Page({
 
   onGoCats() {
     wx.switchTab({ url: '/pages/cats/index' });
+  },
+
+  // ========== 分享 ==========
+
+  onShareAppMessage() {
+    return {
+      title: '校园猫咪相册 — 喵喵外院',
+      path: 'pages/home/index',
+      imageUrl: '/images/main_bg.png'
+    };
+  },
+
+  onShareTimeline() {
+    return {
+      title: '校园猫咪相册 — 喵喵外院',
+      query: '',
+      imageUrl: '/images/main_bg.png'
+    };
   }
 });

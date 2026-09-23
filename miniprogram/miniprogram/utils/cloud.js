@@ -1,6 +1,6 @@
 // 云函数调用封装:统一 loading 与错误提示
 function callFunction(name, data = {}, options = {}) {
-  const { showLoading = false, loadingText = '加载中...' } = options;
+  const { showLoading = false, loadingText = '加载中...', silent = false } = options;
   if (showLoading) {
     wx.showLoading({ title: loadingText, mask: true });
   }
@@ -17,10 +17,12 @@ function callFunction(name, data = {}, options = {}) {
     })
     .catch((err) => {
       console.error(`[cloud] ${name} 调用失败`, err);
-      wx.showToast({
-        title: err.message || '网络异常,请稍后重试',
-        icon: 'none'
-      });
+      if (!silent) {
+        wx.showToast({
+          title: err.message || '网络异常,请稍后重试',
+          icon: 'none'
+        });
+      }
       throw err;
     })
     .finally(() => {

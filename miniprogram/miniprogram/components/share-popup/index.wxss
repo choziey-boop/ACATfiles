@@ -1,0 +1,85 @@
+.overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 9999;
+  display: flex;
+  align-items: flex-end;
+}
+
+.sheet {
+  position: relative;
+  z-index: 9999;
+  width: 100%;
+  background: #000000;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.actions {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 50rpx 40rpx 40rpx;
+}
+
+.action-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16rpx;
+  flex: 1;
+  min-width: 0;
+}
+
+/* 重置 button 默认样式(open-type="share" 需要用 button) */
+.action-item-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  line-height: normal;
+  font-size: inherit;
+  color: inherit;
+  border-radius: 0;
+}
+
+.action-item-btn::after {
+  border: none;
+}
+
+.action-icon {
+  width: 80rpx;
+  height: 80rpx;
+  background: #626262;
+  border-radius: 18rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-icon-share {
+  background: #07c160;
+}
+
+.action-icon-img {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.action-text {
+  font-size: 24rpx;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.cancel-area {
+  border-top: 1rpx solid #646464;
+  padding: 24rpx 0 40rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.cancel-text {
+  font-size: 32rpx;
+  color: #ffffff;
+  font-weight: 500;
+}

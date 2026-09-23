@@ -1,0 +1,28 @@
+<!-- 分享弹窗:发给朋友 / 生成海报 / 下载二维码 -->
+<view wx:if="{{visible}}" class="overlay" catchtap="onCancel">
+  <view class="sheet" catchtap="">
+    <view class="actions">
+      <button class="action-item action-item-btn" open-type="share">
+        <view class="action-icon">
+          <image class="action-icon-img" src="/assets/share.svg" mode="aspectFit" />
+        </view>
+        <text class="action-text">发给朋友</text>
+      </button>
+      <view class="action-item" bindtap="onGenPoster">
+        <view class="action-icon">
+          <image class="action-icon-img" src="/assets/poster.svg" mode="aspectFit" />
+        </view>
+        <text class="action-text">生成海报</text>
+      </view>
+      <view class="action-item" bindtap="onDownloadQrcode">
+        <view class="action-icon">
+          <image class="action-icon-img" src="/assets/qrcode.svg" mode="aspectFit" />
+        </view>
+        <text class="action-text">下载二维码</text>
+      </view>
+    </view>
+    <view class="cancel-area" bindtap="onCancel">
+      <text class="cancel-text">取消</text>
+    </view>
+  </view>
+</view>

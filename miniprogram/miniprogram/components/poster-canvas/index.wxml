@@ -1,0 +1,2 @@
+<!-- 海报绘制 canvas(不可见,仅用于导出图片) -->
+<canvas type="2d" id="posterCanvas" class="poster-canvas" />

@@ -9,7 +9,7 @@
 <block wx:else>
   <!-- 返回按钮:透明,叠在头图左上,垂直对齐右上角胶囊 -->
   <view class="nav-back" style="top: {{navBackTop}}px;" bindtap="onBack">
-    <image class="nav-back-icon" src="/assets/back.svg" mode="aspectFit" />
+    <image class="nav-back-icon" src="{{isDirectEntry ? '/assets/tab-home.svg' : '/assets/back.svg'}}" mode="aspectFit" />
   </view>
 
   <!-- 头图:390x449,被下方内容卡压住下缘 -->
@@ -51,6 +51,10 @@
         <view class="stat" bindtap="onLikeCat">
           <image class="stat-icon" src="{{liked ? '/assets/heart-fill.svg' : '/assets/heart-outline.svg'}}" mode="aspectFit" />
           <text class="stat-num">{{totalLikes}}</text>
+        </view>
+        <view class="stat" bindtap="onShareTap">
+          <image class="stat-icon" src="/assets/share.svg" mode="aspectFit" />
+          <text class="stat-num">分享</text>
         </view>
       </view>
     </view>
@@ -178,4 +182,27 @@
   <view wx:if="{{cat.status === 'available'}}" class="adopt-fixed">
     <view class="adopt-btn" bindtap="onGoAdopt">我想领养</view>
   </view>
+
+  <!-- 分享弹窗 -->
+  <share-popup
+    visible="{{showShare}}"
+    catId="{{catId}}"
+    catName="{{cat.name}}"
+    catCover="{{cat.cover_image}}"
+    bind:poster="onGenPoster"
+    bind:qrcode="onDownloadQrcode"
+    bind:close="onCloseShare"
+  />
+
+  <!-- 海报绘制 -->
+  <poster-canvas
+    id="posterCanvas"
+    visible="{{generatingPoster}}"
+    catName="{{cat.name}}"
+    catGender="{{cat.gender}}"
+    catAge="{{cat.ageText}}"
+    catNeutered="{{cat.is_neutered}}"
+    catAvatarUrl="{{cat.cover_image}}"
+    qrcodeUrl="{{qrcodeUrl}}"
+  />
 </block>
