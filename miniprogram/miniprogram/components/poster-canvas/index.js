@@ -84,13 +84,13 @@ Component({
       if (avatarUrl) {
         try {
           const avatar = await this._loadImage(canvas, avatarUrl);
-          const cx = W / 2, cy = 260, r = 200;
+          const cx = W / 2, cy = 300, r = 200;
 
           // 先画白色边框圆(无阴影)
           ctx.save();
           ctx.beginPath();
           ctx.arc(cx, cy, r + 8, 0, Math.PI * 2);
-          ctx.fillStyle = '#ffffff';
+          ctx.fillStyle = '#FFFBEF';
           ctx.fill();
           ctx.restore();
 
@@ -111,7 +111,7 @@ Component({
       }
 
       // 3. 信息区域(无背景,仅定位用)
-      const cardX = 30, cardY = 520, cardW = W - 60, cardH = 280;
+      const cardX = 45, cardY = 520, cardW = W - 60, cardH = 280;
 
       // 4. 猫名 + 性别
       ctx.fillStyle = '#000000';
@@ -147,7 +147,7 @@ Component({
       // 白色底
       ctx.save();
       this._roundRect(ctx, qrX - 10, qrY - 10, qrSize + 20, qrSize + 40, 12);
-      ctx.fillStyle = '#ffffff';
+      ctx.fillStyle = '#FFFBEF';
       ctx.fill();
       ctx.restore();
       try {

@@ -16,7 +16,8 @@ exports.main = async (event) => {
       path,
       width: 430,
       auto_color: false,
-      line_color: { r: 0, g: 0, b: 0 }
+      line_color: { r: 0, g: 0, b: 0 },
+      is_hyaline: true
     });
 
     console.log('[getCatQrcode] result 类型:', typeof result);

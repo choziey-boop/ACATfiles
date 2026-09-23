@@ -4,6 +4,8 @@ Page({
   data: {
     catId: '',
     catName: '',
+    navBackTop: 0,
+    titleTop: 0,
     form: {
       contact: '',
       reason: '',
@@ -19,11 +21,24 @@ Page({
       setTimeout(() => wx.navigateBack(), 1500);
       return;
     }
+    // 返回按钮垂直对齐右上角胶囊
+    const menuBtn = wx.getMenuButtonBoundingClientRect ? wx.getMenuButtonBoundingClientRect() : null;
+    if (menuBtn) {
+      this.setData({ navBackTop: menuBtn.top + (menuBtn.height - 32) / 2 });
+    }
     this.setData({
       catId: options.catId,
       catName: decodeURIComponent(options.name || '')
     });
     this.checkDuplicate();
+  },
+
+  onReady() {
+    // 状态栏安全区:标题顶部对齐胶囊底部
+    const info = wx.getWindowInfo ? wx.getWindowInfo() : wx.getSystemInfoSync();
+    const menuBtn = wx.getMenuButtonBoundingClientRect ? wx.getMenuButtonBoundingClientRect() : null;
+    const statusBarBottom = menuBtn && menuBtn.bottom ? menuBtn.bottom : (info.statusBarHeight || 0) + 44;
+    this.setData({ titleTop: statusBarBottom });
   },
 
   // 查重:同一用户对同一猫咪已有待审核申请则禁止重复提交
@@ -40,6 +55,10 @@ Page({
   onInput(e) {
     const { field } = e.currentTarget.dataset;
     this.setData({ [`form.${field}`]: e.detail.value });
+  },
+
+  onBack() {
+    wx.navigateBack({ delta: 1 });
   },
 
   onSubmit() {
